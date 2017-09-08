@@ -1,39 +1,39 @@
 library(httr)
 library(jsonlite)
+library(rvest)
+library(xml2)
 
-initial_file_path <- "C:/MyData/School/Year1Sem1/IDS/Assignments/movievalue.csv"
+initial_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/movievalue.csv"
 url <- "http://www.omdbapi.com/?apikey=863c5282&t="
 
-#just this time
-# title <- "titanic"
-# r <- GET("http://www.omdbapi.com/", 
-#          query = list("apikey" = "863c5282", "t" = "titanic")
-# )
 content(r)
 table <- read.csv(file=initial_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
-new_columns <- c("Genre", "IMDBRating", "IMDBVotes")
+new_columns <- c("Genre", "IMDBRating", "IMDBVotes", "RatingTomatometer")
 for (i in new_columns){
   table[,i] <- NA
 }
 
-for (i in 1:NROW(table)){
+#for (i in 1:NROW(table)){
+for (i in 1:10){
   title <- table[i, 1]
   print(title)
   # title_url <- gsub(" ","%20",title)
   # print(title_url)
-  response <- GET("http://www.omdbapi.com/?",
+  response <- GET("http://www.omdbapi.com/",
            query = list("apikey" = "863c5282", "t" = title)
   )
-  print(content(response))
-  if (content(response)$Response){
-    table[i,6] <- content(response)$Genre
+  if (is.null(content(response)$Response) == FALSE){
+    if (length(content(response)$Genre) > 0){
+      table[i,6] <- content(response)$Genre
+    }
     if (length(content(response)$Ratings) > 0){
       table[i,7] <- content(response)$Ratings[[1]]$Value
     }
-    table[i,8] <- content(response)$imdbVotes
+    if (length(content(response)$imdbVotes) > 0){
+      table[i,8] <- content(response)$imdbVotes
+    }
   }
-  print(i)
-
+  View(table)
 }
 # path <- paste(url, title, sep='')
 # response <- GET(path)

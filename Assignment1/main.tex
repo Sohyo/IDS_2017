@@ -1,0 +1,140 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+% \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+
+%% defined colors
+\definecolor{Blue}{rgb}{0,0,0.5}
+\definecolor{Green}{rgb}{0,0.75,0.0}
+\definecolor{LightGray}{rgb}{0.6,0.6,0.6}
+\definecolor{DarkGray}{rgb}{0.3,0.3,0.3}
+
+% \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
+% \lstinputpath{code/}
+
+\lstset{language=R,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\lstset{language=Python,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\lstset{language=Matlab,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\title{IDS 2017 \\Assignment 1}
+\author{
+ Bogdan Petre (s3480941) \\ 
+ Low Daniel (s3120155) \\
+ Xu Teng Andrea (s3548120) 
+ \\ \textbf{Group} 7}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+\section{}
+\subsection{Identify Data Types (10P)}
+
+	\begin{itemize}
+		\item Brightness as measured by a light meter: continuous because each measurement obtains a distinct score[1], quantitative (ratio) because this device could have an absolute zero (i.e., absence of light). 
+		
+		\item Brightness as measured by people’s judgments: if you use a Lickert scale to measure people’s judgment, then brightness would be discrete and qualitative (ordinal) becuase the measurements have a logical order but do not reflect numerical true values.  
+		
+		\item Time in terms of AM or PM: binary, qualitative (nominal if one considers there is not a logical order between AM and PM or ordinal if one views PM coming after AM).
+		
+		\item Coat check number (certain places offer you to leave your coat to someone who, in turn, gives
+		you a number tag that you need to claim it back when you leave): discrete, qualitative (ordinal or perhaps nominal if the coats aren’t placed in the order of the integers).
+	\end{itemize}
+
+	\subsection{}
+	\subsection{Think About Types (20P)}
+	
+	\begin{itemize}
+		\item Title: discrete, qualitative (categorical)
+		\item ReleaseDate: discrete, quantitative (interval)
+		\item Popularity: continuous, quantitative (interval)
+		\item Budget: continuous, quantitative (ratio)
+		\item Revenue: continuous, quantitative (ratio)
+		\item Genre: discrete, qualitative (categorical)
+		\item imdbRating: discrete, qualitative (ordinal)
+		\item imdbVotes: discrete, quantitative (ratio) 
+		\item Director: discrete, qualitative (categorical) 
+		\item Country: discrete, qualitative (categorical) 
+		\item PG rating: discrete, qualitative (ordinal)
+	\end{itemize}
+
+
+% citation section
+\newpage
+\begin{thebibliography}{9}
+	\bibitem{DiscoveringStatistics}
+	Field, A. (2009). Discovering statistics using SPSS. Sage publications. 
+	
+\end{thebibliography}
+
+
+\end{document}
