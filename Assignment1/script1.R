@@ -56,6 +56,10 @@ for (i in 1:NROW(table)){
         table[i,5] <- content(response)$BoxOffice
       }
     }
+    
+    #TengXu94: Same for release date!
+    
+    
   }
   if (found_movies > 1999){
     break;
