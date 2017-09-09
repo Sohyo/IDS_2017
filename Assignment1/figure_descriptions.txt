@@ -1,0 +1,39 @@
+1.4. 
+a)
+
+Figure 1 Histogram of popularity
+Popularity follows a power law distribution with most movies having a popularity of 0 and 0.5.
+
+Figure 2
+Density plot of popularity.
+Continuous variables like popularity are better visualized with a density plot.
+
+Figure 3 
+Density plot of Budget.
+Budget follows a power law distribution with most movies having spent less than 25 million dollars.
+
+
+Figure 4
+Boxplot of most frequent genres shows that Comedy is the most frequent genre.
+
+
+b)
+
+Figure 5
+Does a higher budget produce a higher rating movie?
+Scatter plot of budget and IMDB rating. Interestingly, there seems to be a negative correlation with the movies spending more having a lower rating. But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed.    
+
+
+Does a higher budget produce a more popular movie?
+Figure 6
+Scatter plot of budget and popularity. Popularity weighs the rating on the amount of votes, so it can be considered as a better measure of general audience appeal than IMDB rating. There does not seem to be a trend; however, over 10 million dollars in budget, there seems to be a slight positive correlation (i.e., producing higher popularity). But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed.    
+
+
+Are certain genres more popular than others?
+Figure 7
+Popularity of most frequent genres shows that a power law distribution. Short films have a bimodal distribution, with a most of the short films having a low score but also certain short films having a high rating over 5. It is difficult to answer this question with this figure alone, but for instance we can conclude that action movies seem to have higher popularity than others. 
+
+
+
+
+
