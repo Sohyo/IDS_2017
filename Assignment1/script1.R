@@ -58,8 +58,11 @@ for (i in 1:NROW(table)){
     }
     
     #TengXu94: Same for release date!
-    
-    
+
+    if (length(content(response)$Released)>0 && content(response)$Released != "N/A"){
+      print(content(response)$Released)
+      table[i,2] <- content(response)$Released
+    }
   }
   if (found_movies > 1999){
     break;
