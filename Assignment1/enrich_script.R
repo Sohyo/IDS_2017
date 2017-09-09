@@ -1,13 +1,6 @@
 library(httr)
 library(jsonlite)
-
-#The file paths must be changed by the user
-#initial_file_path <- "C:/MyData/School/Year1Sem1/IDS/Assignments/movievalue.csv"
-#enriched_file_path <- "C:/MyData/School/Year1Sem1/IDS/Assignments/enrichedmovies.csv"
-
-
-initial_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/movievalue.csv"
-enriched_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/enrichedmovies.csv"
+source("config.R")
 
 #Reading the initial CSV in a data frame object and adding some blank fields
 table <- read.csv(file=initial_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
@@ -27,7 +20,11 @@ for (i in 1:NROW(table)){
   response <- GET("http://www.omdbapi.com/?",
            query = list("apikey" = "863c5282", "t" = title)
   )
+<<<<<<< HEAD:Assignment1/script1.R
   #if (content(response)$Response){ #BOGDAN IF
+=======
+
+>>>>>>> 0dbea5d2d7eb43d1666d3acd62ab86e425fd7e80:Assignment1/enrich_script.R
   if (is.null(content(response)$Response) == FALSE){
     found_movies <- found_movies + 1
     print(found_movies)
@@ -41,7 +38,7 @@ for (i in 1:NROW(table)){
         table[i,10] <- content(response)$Ratings[[2]]$Value
       }
     }
-    #TengXu94: I put if control also here because for some movie they do not have those data, just in case
+    #We put if control also here because for some movie they do not have those data
     if (length(content(response)$imdbVotes) > 0){
       table[i,8] <- content(response)$imdbVotes
     }
@@ -57,14 +54,13 @@ for (i in 1:NROW(table)){
       }
     }
     
-    #TengXu94: Same for release date!
-
+    #Same for release date!
     if (length(content(response)$Released)>0 && content(response)$Released != "N/A"){
       print(content(response)$Released)
       table[i,2] <- content(response)$Released
     }
   }
-  if (found_movies > 1999){
+  if (found_movies > 2999){
     break;
   }
 }
