@@ -27,7 +27,7 @@ for (i in 1:NROW(table)){
   response <- GET("http://www.omdbapi.com/?",
            query = list("apikey" = "863c5282", "t" = title)
   )
-  #if (content(response)$Response){ BOGDAN IF
+  #if (content(response)$Response){ #BOGDAN IF
   if (is.null(content(response)$Response) == FALSE){
     found_movies <- found_movies + 1
     print(found_movies)

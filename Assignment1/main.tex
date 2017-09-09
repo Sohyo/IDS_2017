@@ -110,22 +110,65 @@
 		you a number tag that you need to claim it back when you leave): discrete, qualitative (ordinal or perhaps nominal if the coats aren’t placed in the order of the integers).
 	\end{itemize}
 
-	\subsection{}
+	\subsection{Collect It... Link it! (50P)}
+	
+	In this exercise we write down enrich\_script.R in order to collect additional data from the API of OMDB. How we developed the code and what we done are mostly written in the README.txt file.
+	
 	\subsection{Think About Types (20P)}
 	
 	\begin{itemize}
-		\item Title: discrete, qualitative (categorical)
+		\item Title: discrete, qualitative (nominal)
+		Discrete because there is a finite number of titles and qualitative nominal because it's like an ID
+		
 		\item ReleaseDate: discrete, quantitative (interval)
-		\item Popularity: continuous, quantitative (interval)
+		
+		Discrete for the same reason, and quantitative (interval) because they are calendar dates.
+		
+		\item Popularity: continuous, quantitative (ratio)
+		
+		It's continuos because there infinite numbers of popularity since they are real numbers and quantitative (ratio) because there is absolute zero
+		
 		\item Budget: continuous, quantitative (ratio)
+		
+		same reason as above
+		
 		\item Revenue: continuous, quantitative (ratio)
-		\item Genre: discrete, qualitative (categorical)
-		\item imdbRating: discrete, qualitative (ordinal)
-		\item imdbVotes: discrete, quantitative (ratio) 
-		\item Director: discrete, qualitative (categorical) 
-		\item Country: discrete, qualitative (categorical) 
+		
+		same reason as above
+		
+		\item Genre: discrete, categorical (nominal)
+		
+		discrete because there are finite number of genres, qualitative (nominal) you cannot declare an order
+		
+		\item imdbRating: discrete, numeric (ratio)
+		
+		discrete because it has a precision to the first decimal number , it exists the absolute zero
+		
+		\item imdbVotes: continuos, quantitative (ratio)
+		
+		it's continuos because there is no finite number of imdbVotes, and ratio because we can have 0 votes.
+		 
+		\item Director: discrete, categorical(nominal)
+		
+		discrete because there finite number of names, categorical (nominal) because they are names 
+		 
+		\item Country: discrete, qualitative (categorical)
+			
+		 same reason as above
+		 
 		\item PG rating: discrete, qualitative (ordinal)
+		
+		finite number of pg ratings, qualitative (ordinal ) because you can order the ratings by the age the child can watch that movie
+		
 	\end{itemize}
+
+	\subsection{}
+	
+	\subsection{Bonus (+10P)}
+	
+	We used a scatter plot in order to visualize the data that we have and compare properly the IMDB ratings and Rotten Tomatoes ratings.
+	Just see the png file imdb\_vs\_rottenT to see easily see that for some movie the ratings are pretty close for other there is some difference.
+	That's because IMDB uses a weigthed mean [2] with all the users votes, in the other hand Rotten Tomatoes collects all the ratings from critical professionist from all over the world. There is also a Rotten Tomatoes rating from the users see [3].
 
 
 % citation section
@@ -134,6 +177,11 @@
 	\bibitem{DiscoveringStatistics}
 	Field, A. (2009). Discovering statistics using SPSS. Sage publications. 
 	
+	\bibitem{IMDB rating}
+	https://math.stackexchange.com/questions/169032/understanding-the-imdb-weighted-rating-function-for-usage-on-my-own-website
+	
+	\bibitem{Rotten rating}
+	https://www.rottentomatoes.com/about/
 \end{thebibliography}
 
 
