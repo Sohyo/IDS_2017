@@ -20,7 +20,11 @@ for (i in 1:NROW(table)){
   response <- GET("http://www.omdbapi.com/?",
            query = list("apikey" = "863c5282", "t" = title)
   )
+<<<<<<< HEAD:Assignment1/script1.R
+  #if (content(response)$Response){ #BOGDAN IF
+=======
 
+>>>>>>> 0dbea5d2d7eb43d1666d3acd62ab86e425fd7e80:Assignment1/enrich_script.R
   if (is.null(content(response)$Response) == FALSE){
     found_movies <- found_movies + 1
     print(found_movies)
