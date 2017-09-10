@@ -1,6 +1,8 @@
 library(ggplot2)
+source("config.R")
 
-movies=enrichedmovies
+
+movies <- read.csv(cleaned_file_path, header=TRUE, sep=",")
 
 # Histogram of Popularity
 ggplot(movies,aes(Popularity))+geom_histogram(binwidth = 0.05, color="red", fill="blue")+
@@ -49,9 +51,18 @@ ggplot(subset(movies, !is.na(movies$Top_genres)),aes(Popularity, color=Top_genre
   xlim(0.5,5.7)+ggtitle("Popularity of most frequent genres.")
 
 
+# Erase /10 from IMDB Ratings
+vect = rep("", NROW(movies))
+for (i in 1:NROW(movies)){
+  rating = as.character(movies[i,'IMDBRating'])
+  vect[i] <- gsub('/10','',rating)
+}
+movies["IMDBRating"] <- vect # Create extra column with first genre
+
 # Budget vs. IMDB Rating
 movies2 <- subset(movies, Budget > 100000)
 movies2 <- subset(movies, !is.na(IMDBRating))
+
 
 #scatter plot: IMDB Rating vs. Budget
 ggplot(movies2,aes(x=Budget,y=as.numeric(IMDBRating)))+geom_point(size=1,color="blue")+

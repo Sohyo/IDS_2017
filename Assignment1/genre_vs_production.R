@@ -1,8 +1,10 @@
 require(ggplot2)
 require(reshape2)
 library(dplyr)
-enriched_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/enrichedmovies.csv"
-grouped_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/groupedGenrePerProduction.csv"
+source("config.R")
+
+# enriched_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/enrichedmovies.csv"
+# grouped_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/groupedGenrePerProduction.csv"
 working_data <- read.csv(file=enriched_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
 
 
@@ -48,4 +50,4 @@ df <- working_data5[,c(12,13)]
 grouped <- group_by(df, df$Production, df$Genre_first) %>%
   summarise(count = n())
 
-write.csv(file="/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/groupedGenrePerProduction.csv", x=grouped)
+write.csv(file=grouped_file_path, x=grouped)

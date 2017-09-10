@@ -1,7 +1,6 @@
 require(ggplot2)
 require(reshape2)
-
-enriched_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team-07/Assignment1/enrichedmovies.csv"
+source("config.R")
 
 working_data <- read.csv(file=enriched_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
 

@@ -112,7 +112,7 @@
 
 	\subsection{Collect It... Link it! (50P)}
 	
-	In this exercise we write down enrich\_script.R in order to collect additional data from the API of OMDB. How we developed the code and what we done are mostly written in the README.txt file.
+	In this exercise we created enrich\_script.R in order to collect additional data from the API of OMDB. A general description of the code is provided in the \textit{ReadMe.txt} file, while more detailed explanations are given as comments.
 	
 	\subsection{Think About Types (20P)}
 	
@@ -167,19 +167,39 @@
 	\subsubsection{a}
 	
 	\begin{itemize}
-		\item \textbf{Figure 1} Histogram of popularity
-		Popularity follows a power law distribution with most movies having a popularity of 0 and 0.5.
-		
-		\item \textbf{Figure 2}
-		Density plot of popularity.
-		Continuous variables like popularity are better visualized with a density plot.
-		
-		\item \textbf{Figure 3} 
-		Density plot of Budget.
-		Budget follows a power law distribution with most movies having spent less than 25 million dollars.
-		
+		\item \textbf{Figure 1} Popularity follows a power law distribution with most movies having a popularity of 0 and 0.5.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_1_histogram_popularity}
+		\caption{Histogram of popularity}
+		\label{fig:f1}
+		\end{center}
+		\end{figure}
+		\item \textbf{Figure 2} Continuous variables like popularity are better visualized with a density plot.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_2_density_popularity}
+		\caption{Density plot of popularity.}
+		\label{fig:f2}
+		\end{center}
+		\end{figure}
+		\item \textbf{Figure 3} Budget follows a power law distribution with most movies having spent less than 25 million dollars.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_3_density_budget}
+		\caption{Density plot of budget.}
+		\label{fig:f3}
+		\end{center}
+		\end{figure}
 		\item \textbf{Figure 4}
 		Boxplot of most frequent genres shows that Comedy is the most frequent genre.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_4_boxplot_genres}
+		\caption{Most frequent genres}
+		\label{fig:f4}
+		\end{center}
+		\end{figure}
 	\end{itemize}
 	
 	
@@ -189,27 +209,52 @@
 	\begin{itemize}
 		\item \textbf{Figure 5}\\
 		\textbf{Does a higher budget produce a higher rating movie?}
-		Scatter plot of budget and IMDB rating. Interestingly, there seems to be a negative correlation with the movies spending more having a lower rating. But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed.    
+		Interestingly, there seems to be a negative correlation with the movies spending more having a lower rating. But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed. 
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_5_scatterplot_budget_rating}
+		\caption{Scatter plot of budget and IMDB rating}
+		\label{fig:f5}
+		\end{center}
+		\end{figure}   
 		
 		
 		\item \textbf{Figure 6}\\
 		 \textbf{Does a higher budget produce a more popular movie?}
-		
-		Scatter plot of budget and popularity. Popularity weighs the rating on the amount of votes, so it can be considered as a better measure of general audience appeal than IMDB rating. There does not seem to be a trend; however, over 10 million dollars in budget, there seems to be a slight positive correlation (i.e., producing higher popularity). But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed.    
+		 Popularity weighs the rating on the amount of votes, so it can be considered as a better measure of general audience appeal than IMDB rating. There does not seem to be a trend; however, over 10 million dollars in budget, there seems to be a slight positive correlation (i.e., producing higher popularity). But inferential statistics are needed to determine this. Moreover, very few movies had budgets reported, so more data is needed.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_6_budget_popularity}
+		\caption{Scatter plot of budget and popularity}
+		\label{fig:f6}
+		\end{center}
+		\end{figure}      
 		
 		
 		\item \textbf{Figure 7} 
 		\textbf{Are certain genres more popular than others?}
-		Popularity of most frequent genres shows that a power law distribution. Short films have a bimodal distribution, with a most of the short films having a low score but also certain short films having a high rating over 5. It is difficult to answer this question with this figure alone, but for instance we can conclude that action movies seem to have higher popularity than others.
-		
+		Popularity of most frequent genres shows a power law distribution. Short films have a bimodal distribution, with a most of the short films having a low score but also certain short films having a high rating over 5. It is difficult to answer this question with this figure alone, but for instance we can conclude that action movies seem to have higher popularity than others.
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{fig_7_popularity_top_genres}
+		\caption{Popularity of most frequent genres}
+		\label{fig:f7}
+		\end{center}
+		\end{figure}   
 	\end{itemize}
 		
 	\subsection{Bonus (+10P)}
 	
 	\textbf{1}\\
-	We used a scatter plot in order to visualize the data that we have and compare properly the IMDB ratings and Rotten Tomatoes ratings.
-	Just see the png file imdb\_vs\_rottenT to see easily see that for some movie the ratings are pretty close for other there is some difference.
+	We used a scatter plot in order to visualize the data that we have and compare properly the IMDB ratings and Rotten Tomatoes ratings. We can easily see that for some movie the ratings are pretty close for other there is some difference.
 	That's because IMDB uses a weigthed mean [2] with all the users votes, in the other hand Rotten Tomatoes collects all the ratings from critical professionist from all over the world. There is also a Rotten Tomatoes rating from the users see [3].
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{imdb_vs_rottenR}
+		\caption{IMDB vs. Rotten Tomatoes ratings}
+		\label{fig:f8}
+		\end{center}
+		\end{figure}  
 
 	\textbf{3}\\
 	For this exercise we obtained also the Production House Information, then obtained the first Genre for every Movie in Order to delete noise with the other subGenres.\\
@@ -220,7 +265,7 @@
 \newpage
 \begin{thebibliography}{9}
 	\bibitem{DiscoveringStatistics}
-	Field, A. (2009). Discovering statistics using SPSS. Sage publications. 
+	Field, A. (2009). Discovering statistics using SPSS. Sage publications. 
 	
 	\bibitem{IMDB rating}
 	https://math.stackexchange.com/questions/169032/understanding-the-imdb-weighted-rating-function-for-usage-on-my-own-website
