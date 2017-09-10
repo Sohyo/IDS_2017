@@ -4,7 +4,7 @@ source("config.R")
 
 #Reading the initial CSV in a data frame object and adding some blank fields
 table <- read.csv(file=initial_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
-new_columns <- c("Genre", "IMDBRating", "IMDBVotes", "Director", "RottenTomatoesRating")
+new_columns <- c("Genre", "IMDBRating", "IMDBVotes", "Director", "RottenTomatoesRating", "Production")
 for (i in new_columns){
   table[,i] <- NA
 }
@@ -20,11 +20,11 @@ for (i in 1:NROW(table)){
   response <- GET("http://www.omdbapi.com/?",
            query = list("apikey" = "863c5282", "t" = title)
   )
-<<<<<<< HEAD:Assignment1/script1.R
+#<<<<<<< #HEAD:Assignment1/script1.R
   #if (content(response)$Response){ #BOGDAN IF
-=======
+#=======
 
->>>>>>> 0dbea5d2d7eb43d1666d3acd62ab86e425fd7e80:Assignment1/enrich_script.R
+#>>>>>>># 0dbea5d2d7eb43d1666d3acd62ab86e425fd7e80:Assignment1/enrich_script.R
   if (is.null(content(response)$Response) == FALSE){
     found_movies <- found_movies + 1
     print(found_movies)
@@ -56,8 +56,11 @@ for (i in 1:NROW(table)){
     
     #Same for release date!
     if (length(content(response)$Released)>0 && content(response)$Released != "N/A"){
-      print(content(response)$Released)
       table[i,2] <- content(response)$Released
+    }
+    if (length(content(response)$Production)>0){
+      print(content(response)$Production)
+      table[i,11] <- content(response)$Production
     }
   }
   if (found_movies > 2999){

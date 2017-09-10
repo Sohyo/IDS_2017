@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.8.17)  9 SEP 2017 17:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.8.17)  10 SEP 2017 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -737,43 +737,44 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 []\T1/cmr/m/n/10 https://math.stackexchange.com/questions/169032/understanding-
 the-imdb-weighted-rating-
  []
 
-[3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 188.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 188.
+[4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 188.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 188.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EFF955BEEBB559901FF32E22743582A3;376.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
+(rerunfilecheck)             Checksum: A34CAD6F0B7FDEB18A9A9EB82B28B6D7;526.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
  ) 
 Here is how much of TeX's memory you used:
- 19555 strings out of 492990
- 348396 string characters out of 6138688
- 472229 words of memory out of 5000000
- 22755 multiletter control sequences out of 15000+600000
- 11664 words of font info for 32 fonts, out of 8000000 for 9000
+ 19562 strings out of 492990
+ 348504 string characters out of 6138688
+ 473229 words of memory out of 5000000
+ 22758 multiletter control sequences out of 15000+600000
+ 12440 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,6n,72p,468b,608s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,6n,72p,490b,608s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/font
-s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/
-cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm10
-00.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on main.pdf (3 pages, 93865 bytes).
+s/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/
+cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx14
+40.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/
+fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on main.pdf (4 pages, 114770 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
- 14 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 97 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
+ 17 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

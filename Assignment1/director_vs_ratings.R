@@ -5,23 +5,21 @@ enriched_file_path <- "/home/xu/Documents/Intro to Data Science/Assignment1/team
 
 working_data <- read.csv(file=enriched_file_path, header=TRUE, sep=",", stringsAsFactors = FALSE)
 
-for (i in 1:NROW(working_data)){
-  
-  working_data[i,8] <- gsub("/10", "", working_data[i,8] )
+
+# Obtain first genre in genres like in figures.R
+vect = rep("", NROW(movies))
+for (i in 1:NROW(movies)){
+  genres = as.character(movies[i,'Genre'])
+  first = strsplit(genres,",")[[1]][1]
+  vect[i] <- first
 }
 
-working_data2 <- working_data[!is.na(working_data$Director),]
-working_data3 <- working_data2[working_data2$Director != "N/A",]
+working_data["Genre_first"] <- vect
 
-unique_directors <- list()
-directors <- vector(mode="list", length=NROW(working_data3))
-names(directors) <- working_data3$Director
-for(i in 1:length(directors)){
-  if(!( i %in% unique_directors)){
-    unique_directors <- c(unique_directors, directors[i])
-  }
-}
-print(unique_directors)
+#Cleaning Column Production House from N/A
+working_data2 <- working_data[working_data$Production != "N/A",]
+
+
 
 plot(x = factor(working_data3$Director),y = as.numeric(working_data2$IMDBRating),
      xlab = "IMDBRatings",
