@@ -1,0 +1,55 @@
+"","df$Production","df$Genre_first","count"
+"1","MGM","Action",4
+"2","MGM","Comedy",4
+"3","MGM","Drama",5
+"4","MGM","Horror",1
+"5","MGM Home Entertainment","Action",1
+"6","MGM Home Entertainment","Biography",4
+"7","MGM Home Entertainment","Comedy",2
+"8","MGM Home Entertainment","Drama",1
+"9","MGM Home Entertainment","Horror",1
+"10","Paramount Pictures","Action",3
+"11","Paramount Pictures","Adventure",1
+"12","Paramount Pictures","Comedy",6
+"13","Paramount Pictures","Crime",1
+"14","Paramount Pictures","Drama",8
+"15","Paramount Pictures","Horror",1
+"16","Paramount Pictures","Western",1
+"17","Sony Pictures Entertainment","Biography",1
+"18","Sony Pictures Entertainment","Comedy",2
+"19","Sony Pictures Entertainment","Drama",2
+"20","Sony Pictures Entertainment","Fantasy",2
+"21","Sony Pictures Entertainment","History",1
+"22","Sony Pictures Entertainment","Horror",1
+"23","Sony Pictures Home Entertainment","Action",3
+"24","Sony Pictures Home Entertainment","Adventure",1
+"25","Sony Pictures Home Entertainment","Comedy",1
+"26","Sony Pictures Home Entertainment","Crime",1
+"27","Sony Pictures Home Entertainment","Drama",3
+"28","Sony Pictures Home Entertainment","Horror",2
+"29","United Artists","Action",1
+"30","United Artists","Adventure",1
+"31","United Artists","Comedy",4
+"32","United Artists","Drama",2
+"33","Universal Pictures","Action",5
+"34","Universal Pictures","Adventure",1
+"35","Universal Pictures","Animation",1
+"36","Universal Pictures","Comedy",4
+"37","Universal Pictures","Crime",2
+"38","Universal Pictures","Documentary",1
+"39","Universal Pictures","Drama",3
+"40","Universal Pictures","Horror",2
+"41","Universal Pictures","Western",1
+"42","Walt Disney Pictures","Animation",7
+"43","Walt Disney Pictures","Documentary",1
+"44","Walt Disney Pictures","Drama",1
+"45","Warner Bros.","Adventure",1
+"46","Warner Bros.","Biography",2
+"47","Warner Bros.","Comedy",4
+"48","Warner Bros.","Crime",2
+"49","Warner Bros.","Drama",5
+"50","Warner Bros.","War",1
+"51","Warner Home Video","Action",4
+"52","Warner Home Video","Comedy",2
+"53","Warner Home Video","Drama",5
+"54","Warner Home Video","Fantasy",1
