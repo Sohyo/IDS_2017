@@ -1,0 +1,15 @@
+[slide1]
+Introduction to the problem
+[slide2]
+Reasons why we have missing data
+[slide3]
+Missing data types
+[slide4]
+Problems related to Missing Data
+[slide5]
+complete-case analysis (with jupyter notebook code)
+single imputation		(same above)
+multi imputation 		(same above) //it will take at leat 10 minutes I think
+[slide6 (optional because we can discuss about that when we show the code)]
+Differences with the three methods + advantages + disadvantges
+
