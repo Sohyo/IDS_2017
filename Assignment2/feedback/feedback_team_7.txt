@@ -1,0 +1,37 @@
+Team 7  
+Presentation.content.material..The.content.in.presentation.was.of.good.quality.
+mean(var): 8.00 (0.80)  
+ Presentation.content.material..The.content.in.the.presentation.supported.the.main.points.
+mean(var): 7.67 (0.27)  
+ Presentation.content.material..The.content.in.the.presentation.was.relevant.for.the.topic.
+mean(var): 8.00 (0.40)  
+  
+Comments..motivation.for.the.aboveSome types of dealing with missingness were left out or mentioned too briefly.
+A nice record of real-life events has been used that contained missing entried, and the presentation properly covered the material. They could have presented better how they 'solved' the issues with the Titanic dataset in a conclusion.
+ Quality of the content was very nice! The practical part took too much time, but 
+ was nice to have!
+ The information and programming they did was very nice. But I think they focused too much on the programming and less on the actual theory.
+ 
+ Clear explanation. Supported by paper references. Analogies could be improved.
+Presentation.style..Presentation.contained.clear.goals.and.a.common.thread.
+mean(var): 7.83 (0.17)  
+ Presentation.style..Speaker.conveyed.the.information.in.an.engaing.and.attractive.manner.
+mean(var): 8.17 (0.17)  
+ Presentation.style..The.team.was.able.to.defend.their.presentation..answer.questions.asked.by.the.audience.if.it.was.within.the.scope.of.topic.
+mean(var): 7.67 (0.67)  
+What.did.you.like.about.the.presentation.
+Good use of a common dataset throughout and an interactive demo showing the ways to deal with missingness step by step
+It is nice to see something else than a powerpoint for once, they used code examples and a blackboard.
+ Overall presentation was well made and kept my attention throughout. The last part of the presentation was very well done!
+ The presenters we're very engaging and that made the presentation really good.
+ 
+ Engaging the audience by use of open question.
+  
+What.are.your.suggestions.for.improvement.
+Have a clearer link with multiple imputation and the demo. It's a bit of a complex topic so had to be better introduced/discussed before showing it off. May have been due to time constraints.
+A single presenter is often preferable, as the switching distracts, but it's understandable why the assignment was split into multiple presenters (everybody did it like this, it's more efficient and fair).
+ Shorten down the practical part, but still keep it in the presentation.
+ They should focus more on the theory.
+ 
+ Use more visual aids to support the explanation of the subject matter.
+  
