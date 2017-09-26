@@ -1,0 +1,136 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+% \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+
+%% defined colors
+\definecolor{Blue}{rgb}{0,0,0.5}
+\definecolor{Green}{rgb}{0,0.75,0.0}
+\definecolor{LightGray}{rgb}{0.6,0.6,0.6}
+\definecolor{DarkGray}{rgb}{0.3,0.3,0.3}
+
+% \newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
+% \lstinputpath{code/}
+
+\lstset{language=R,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\lstset{language=Python,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\lstset{language=Matlab,
+   basicstyle=\ttfamily\small,
+   breaklines=true,
+   keywordstyle=\bfseries\color{Blue},
+   commentstyle=\itshape\color{LightGray},
+   stringstyle=\color{Green},
+   numbers=left,
+   numberstyle=\tiny\color{DarkGray},
+   stepnumber=1,
+   numbersep=10pt,
+   backgroundcolor=\color{white},
+   tabsize=2,
+   showspaces=false,
+   showstringspaces=false,
+   captionpos=b,
+%    inputpath={code/},
+   frame=tb
+}
+
+\title{Assignment 4: Association Rules}
+\author{
+Low, Daniel Mark (S3120155) \\
+Petre, Bogdan (S3480941) \\
+Xu, Teng Andrea (S3548120) \\ 
+ \\ \textbf{Group} 7}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Introduction: Confidence and Support (30p)}
+
+\textit{1. Question:} What’s the importance of lift in association rule mining? Why is confidence and/or
+support not sufficient?\\
+\textit{1. Answer:} The function lift measure how many times more often the items X and Y occur together than expected if they are are statistically independent of each other. Is a measure of how the two items are really related rather then coincidentally happening together.\\
+The following is the lift formula:
+
+\begin{center}
+	$Lift(X\rightarrow Y)=  \frac{Support(X \cap  Y)}{Support(X)*Support(Y)}$ 
+\end{center}
+If the result is equal to 1 then X and Y are statistically independent of each other, otherwise if the result is greater than 1 than there is a strong association between the two items
+
+Support and Confidence are not sufficient because they just one item and that's it (the first )or consider just the antecedent item of the expression X $\rightarrow$ Y and the concurrence of X and Y(the latter). Furthermore, confidence cannot tell if a rule contains true implication of the relationship or if the rule is pure coincidence.\\
+\newline
+\textit{2. Question:} suppose you want to apply association rule mining on a collection of surveys containing
+personal details such as: name, age, gender, hobbies, favorite color, income, country etc.
+How would you convert this raw data into a form suitable for association analysis? \\
+\textit{2.Answer:} First of all the table name gives us nothing, for example if we have lift (name)\{Marco\} $\rightarrow$ (hobby)\{Basketball\} equal to 2 it does not mean anything, it's just coincidence that in the dataset many transaction have Marco that play basketball but statistically it does mean nothing.\\
+Then I will change the continuous data like "age" and "income" in an interval or categorical, for example for age "youth" if the age is below 30 and the wealthy if income(annual) is like 100.000 euros. Then we will have for example lift like (country,job)\{USA,engineer\} $\rightarrow$ \{wealthy\} equal to 2.5, that does make sense.\\  
+\newline
+\textit{3. Question:} Suppose we already know that the lift of the rule wine => cheese is 2. We also know the
+that the support of wine is 0.1. What can we say about the support for cheese?\\
+\textit{3.Answer:} Support(cheese) it has to be 5 times Support(wine $\cap$ cheese) because from the previous lift formula we obtain:
+
+\begin{center}
+	$Support(cheese) = \frac{Support(wine\cap cheese)}{Support(wine) * Lift(wine \rightarrow cheese)}$
+\end{center}
+That also makes sense because if we have 10\% of all transaction contain wine then the value of Support(wine $\cap$ cheese) has to be lower or at most Support(wine) (case limit when in all occurrence of wine we have also cheese).
+
+% citation section
+\begin{thebibliography}{9}
+\end{thebibliography}
+
+\end{document}
+
+% This is how you write code into Latex:
+% \lstinputlisting[language=R,label=lst:r_code,caption=Boxplot example]{code/boxplot.R}
