@@ -111,7 +111,7 @@ If the result is equal to 1 then X and Y are statistically independent of each o
 
 Support and Confidence are not sufficient because they just one item and that's it (the first )or consider just the antecedent item of the expression X $\rightarrow$ Y and the concurrence of X and Y(the latter). Furthermore, confidence cannot tell if a rule contains true implication of the relationship or if the rule is pure coincidence.\\
 \newline
-\textit{2. Question:} suppose you want to apply association rule mining on a collection of surveys containing
+\textit{2. Question:} Suppose you want to apply association rule mining on a collection of surveys containing
 personal details such as: name, age, gender, hobbies, favorite color, income, country etc.
 How would you convert this raw data into a form suitable for association analysis? \\
 \textit{2.Answer:} First of all the table name gives us nothing, for example if we have lift (name)\{Marco\} $\rightarrow$ (hobby)\{Basketball\} equal to 2 it does not mean anything, it's just coincidence that in the dataset many transaction have Marco that play basketball but statistically it does mean nothing.\\
@@ -124,7 +124,11 @@ that the support of wine is 0.1. What can we say about the support for cheese?\\
 \begin{center}
 	$Support(cheese) = \frac{Support(wine\cap cheese)}{Support(wine) * Lift(wine \rightarrow cheese)}$
 \end{center}
-That also makes sense because if we have 10\% of all transaction contain wine then the value of Support(wine $\cap$ cheese) has to be lower or at most Support(wine) (case limit when in all occurrence of wine we have also cheese).
+That also makes sense because if we have 10\% of all transaction contain wine then the value of Support(wine $\cap$ cheese) has to be lower or at most Support(wine) (case limit when in all occurrence of wine we have also cheese).\\
+\newline
+\textit{4. Question:} Find all rules with a minimum support of 0.3 and a minimum confidence of 0.7. Give a
+short explanation on how you found these rules.\\
+\textit{4.Answer:} 
 
 % citation section
 \begin{thebibliography}{9}

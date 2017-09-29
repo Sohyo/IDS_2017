@@ -1,0 +1,1 @@
+file_1_4 <- "C:/Users/bogda/team-07/Assignment4/1_4.csv"
