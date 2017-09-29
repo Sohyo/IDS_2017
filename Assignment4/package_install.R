@@ -1,1 +1,1 @@
-install.packages(c("arules"))
+install.packages(c("arules", "readr"))
