@@ -1,1 +1,1 @@
-install.packages(c("arules", "readr"))
+install.packages(c("arules", "arulesViz", "readr", "ggplot2", "dplyr"))

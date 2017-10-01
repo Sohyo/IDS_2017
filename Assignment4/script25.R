@@ -31,10 +31,9 @@ for (i in 1:length(aggrData)) {
 #Generate Transactions
 trans <- as(listData,"transactions")
 
+#Generate Rules
+rules <- apriori(trans, parameter = list(minlen=2, maxlen=2, support=0.01, confidence=0.1, target = "rules"))
 
-plot(head(sort(rules, by = "lift"),20), method="graph", control=list("items"))
-
-
-plot(tail(sort(rules, by = "confidence"),30), method="graph", control=list("items"))
-
-plot(head(sort(rules, by = "confidence"),30), method="graph", control=list("items"))
+#Get all the rules where Iron Maiden is on the right
+rules.sub <- subset(rules, subset = rhs %in% "Iron Maiden")
+head(inspect(sort(rules.sub, decreasing = TRUE, na.last = NA, by = "lift", order = FALSE)))

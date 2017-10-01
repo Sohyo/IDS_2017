@@ -6,7 +6,7 @@ library(arulesViz)
 source("config.R")
 
 #15121996 many rows!
-data <- read_tsv(file="/home/xu/Documents/Intro to Data Science/Assignment4/lastfm-dataset-1K/userid-timestamp-artid-artname-traid-traname.tsv",
+data <- read_tsv(file=dataset,
                  col_names = c('userid', 'ts','artistid', 'artname', 'trid', 'trname'))
 
 #13 452 816 na entries deleted
