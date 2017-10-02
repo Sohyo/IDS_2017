@@ -48,6 +48,6 @@ for (i in 1:length(aggrData)) {
 trans <- as(aggrData,"transactions")
 
 
-frequentItems <- apriori(trans, parameter = list(minlen=1,maxlen=2, support=0.2, target = "frequent itemsets"))
+frequentItems <- apriori(trans, parameter = list(minlen=1,maxlen=1, support=0.2, target = "frequent itemsets"))
 
 inspect(head(sort(frequentItems,by='count'),50))

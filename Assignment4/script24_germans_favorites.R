@@ -44,4 +44,4 @@ trans <- as(aggrData,"transactions")
 
 frequentItems <- apriori(trans, parameter = list(minlen=1,maxlen=2, support=0.2, target = "frequent itemsets"))
 
-inspect(head(sort(frequentItems,by='count'),50))
+inspect(head(sort(frequentItems,by='count'),10))

@@ -210,10 +210,59 @@
 	Each example is divided in a different script:
 	
 	\begin{itemize}
-		\item Ex1, which are the favorites band for Germans(country)? script24\_germans\_favorites.R
+		\item Ex1, which are the favorites band for Germans(country)? script24\_germans\_favorites.R 
 		\item Ex2, which are the favorites artists for male(gender) teenagers(age) (categorized between from 14 to 20) from all over the world? script24\_male\_teenagers\_favorites.R
 		\item Ex3, which are the favorites musicians for English male teenagers (country,gender,age)? script24\_english\_male\_teenagers\_favorites.R
 	\end{itemize}
+	
+	\subsubsection{Ex1 result Top 10 Band in Germany (sampled dataset)}
+	
+		\begin{lstlisting}
+items                                          support count
+[1]  {Portishead}                                   0.8     4    
+[2]  {Muse}                                         0.8     4    
+[3]  {Kings Of Leon}                                0.8     4    
+[4]  {Muse,Portishead}                              0.8     4    
+[5]  {Kings Of Leon,Portishead}                     0.8     4    
+[6]  {Kings Of Leon,Muse}                           0.8     4    
+[7]  {...And You Will Know Us By The Trail Of Dead} 0.6     3    
+[8]  {Yeah Yeah Yeahs}                              0.6     3    
+[9]  {Tv On The Radio}                              0.6     3    
+[10] {Queens Of The Stone Age}                      0.6     3   
+	\end{lstlisting}
+	
+	\subsubsection{Ex2 result top 10 band For male teenagers (sampled dataset )}
+	
+	\begin{lstlisting}
+		items                   support   count
+		[1]  {Red Hot Chili Peppers} 0.7692308 10   
+		[2]  {Coldplay}              0.5384615  7   
+		[3]  {Arctic Monkeys}        0.5384615  7   
+		[4]  {The Killers}           0.4615385  6   
+		[5]  {Death Cab For Cutie}   0.4615385  6   
+		[6]  {Radiohead}             0.4615385  6   
+		[7]  {Sigur Ros}             0.4615385  6   
+		[8]  {My Chemical Romance}   0.3846154  5   
+		[9]  {Panic At The Disco}    0.3846154  5   
+		[10] {Fall Out Boy}          0.3846154  5 
+	\end{lstlisting}
+	
+	\subsubsection{Ex3 result top 10 band for English male teenagers (sampled dataset)}
+	(Comment: There are no so many male teenagers in UK we tried with a sample of 3'000'000 entries)
+	\begin{lstlisting}
+		items                   support   count
+		[1]  {Red Hot Chili Peppers} 1.0000000 3    
+		[2]  {Eminem}                1.0000000 3    
+		[3]  {50 Cent}               0.6666667 2    
+		[4]  {Jay-Z And Linkin Park} 0.6666667 2    
+		[5]  {The Kooks}             0.6666667 2    
+		[6]  {Will Smith}            0.6666667 2    
+		[7]  {Blink-182}             0.6666667 2    
+		[8]  {Feeder}                0.6666667 2    
+		[9]  {Foo Fighters}          0.6666667 2    
+		[10] {Kaiser Chiefs}         0.6666667 2  
+	\end{lstlisting}
+	
 	
 	\subsection{Giving Iron Maiden CD to friend who would actually like it}
 	\par\noindent The idea we used in this exercise was to get all the rules where the consequent is Iron Maiden, and sort them by lift. Then, we would choose the top 5 results to add in our questionnaire.

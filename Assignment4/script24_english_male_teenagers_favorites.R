@@ -15,7 +15,7 @@ data2 <- read_tsv(file='/home/xu/Documents/Intro to Data Science/Assignment4/las
 complete_case <- data[complete.cases(data), ]
 
 #select just 10% of the whole dataset at random
-sampled <- complete_case[sample(nrow(complete_case), 1000000), ]
+sampled <- complete_case[sample(nrow(complete_case), 3000000), ]
 #We'll live just the 2 columns that interest us
 
 trimmed <- sampled[, c(grep("userid", colnames(sampled), value = TRUE),grep("artname", colnames(sampled), value = TRUE))]
@@ -48,6 +48,6 @@ for (i in 1:length(aggrData)) {
 trans <- as(aggrData,"transactions")
 
 
-frequentItems <- apriori(trans, parameter = list(minlen=1,maxlen=2, support=0.2, target = "frequent itemsets"))
+frequentItems <- apriori(trans, parameter = list(minlen=1,maxlen=1, support=0.2, target = "frequent itemsets"))
 
-inspect(head(sort(frequentItems,by='count'),50))
+inspect(head(sort(frequentItems,by='count'),10))
