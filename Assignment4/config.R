@@ -1,1 +1,2 @@
 dataset <- "C:/MyData/School/Year1Block1/IDS/Ass4/lastfm-dataset-1K/userid-timestamp-artid-artname-traid-traname.tsv"
+dataset_user <- "C:/MyData/School/Year1Block1/IDS/Ass4/lastfm-dataset-1K/userid-profile.tsv"
