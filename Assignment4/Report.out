@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction: Confidence and Support \(30p\)}{}% 1
+\BOOKMARK [1][-]{section.2}{Beethoven and Iron Maiden \(70p\)}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Loading, cleaning, and plotting data}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Beethoven recommendations}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{From Beethoven to Eminem}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Using info about users}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Ex1 result Top 10 Band in Germany \(sampled dataset\)}{subsection.2.4}% 7
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Ex2 result top 10 band For male teenagers \(sampled dataset \)}{subsection.2.4}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Ex3 result top 10 band for English male teenagers \(sampled dataset\)}{subsection.2.4}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Giving Iron Maiden CD to friend who would actually like it}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{\(Bonus\) Visualization of Association Rules \(10P\)}{}% 11
