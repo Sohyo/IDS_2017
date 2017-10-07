@@ -30,9 +30,9 @@ features_test = df_whole.iloc[179:,:]
 
 
 # you don't want to to do tsne on 186 features, better to reduce to 50 then do tsne:
-X_reduced = TruncatedSVD(n_components=70, random_state=0).fit_transform(features_train.values)
+X_reduced = TruncatedSVD(n_components=70, random_state=42).fit_transform(features_train.values)
 
-tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000)
+tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000, random_state=42)
 tsne_results = tsne.fit_transform(X_reduced,labels_train)
 df_tsne = pd.DataFrame(tsne_results,columns=['x-tsne','y-tsne'])
 df_tsne['label']=np.asarray(labels_train)
@@ -41,9 +41,9 @@ chart.save(path+save_fig_tsne_train)
 
 
 #tSNE of test set
-X_reduced = TruncatedSVD(n_components=70, random_state=0).fit_transform(features_test.values)
+X_reduced = TruncatedSVD(n_components=70, random_state=42).fit_transform(features_test.values)
 
-tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000)
+tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000,random_state=42)
 tsne_results1 = tsne.fit_transform(X_reduced)
 df_tsne1 = pd.DataFrame(tsne_results1,columns=['x-tsne','y-tsne'])
 
