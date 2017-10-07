@@ -10,10 +10,10 @@ from sklearn.decomposition import TruncatedSVD
 from ggplot import *
 import ggplot
 import random
-
+import config as cfg
 
 # Change paths accordingly
-path = '/Users/danielmlow/Dropbox/lct/data_science/assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 save_fig_boxplot  ='boxplot_allsubjects1.eps'
