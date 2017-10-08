@@ -5,7 +5,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import model_selection
 from sklearn import neighbors
 from sklearn import tree
+import pprint
 
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 
@@ -18,23 +21,45 @@ import pandas as pd
 from sklearn import preprocessing
 from sklearn import utils
 
+# Change paths accordingly
+path = '/home/xu/Documents/Intro to Data Science/Assignment5/'
+features_file = 'featuresFlowCapAnalysis2017.csv'
+labels_file = 'labelsFlowCapAnalysis2017.csv'
+
+dataset_65 = 'train_65.csv'
+dataset_48 = 'train_48.csv'
+
 #Preprocessing
 
-data = pd.read_csv("/home/xu/Documents/Intro to Data Science/Assignment5/featuresFlowCapAnalysis2017.csv")
+#data = pd.read_csv(path+features_file)
+#data = pd.read_csv(path+dataset_65)
+data = pd.read_csv(path+dataset_48)
+#Uncomment the following line only if using 48 or 65
 
-labels = pd.read_csv("/home/xu/Documents/Intro to Data Science/Assignment5/labelsFlowCapAnalysis2017.csv")
+#data = data.iloc[1:]
+
+labels = pd.read_csv(path+labels_file)
 
 #The Joined dataframe
 complete_data = pd.concat([data, labels], axis=1)
 
 labeled = complete_data[0:179]
 
+#DROP 47
+
+labeled = labeled.drop([47])
 #Into arrays
 dataset = labeled.values
 
 #I need the first 186 columns
-X = dataset[:,0:185]
-Y = dataset[:,186]
+#X = dataset[:,0:185]
+#Y = dataset[:,186]
+
+#X = dataset[:,1:65]
+#Y = dataset[:,66]
+
+X = dataset[:,1:48]
+Y = dataset[:,49]
 
 print("----------------------")
 
@@ -54,20 +79,29 @@ print("----------------------")
 
 knn = neighbors.KNeighborsClassifier()
 dt = tree.DecisionTreeClassifier()
+svm = SVC()
 
-pipelines = [Pipeline([('knn', knn)]), Pipeline([
-                                                 ('dt', dt)])]
+pipelines = [Pipeline([('knn', knn)]), Pipeline([('dt', dt)]), Pipeline([('svm', svm)])]
 parameters = {
-    'knn__n_neighbors': [1, 3, 5, 7, 9, 11, 13],
+    'knn__n_neighbors': [1,2, 3,4, 5,6, 7,8, 9,10, 11,12, 13],
     'knn__weights': ['uniform', 'distance'],
     'knn__algorithm': [ 'ball_tree', 'kd_tree', 'brute']
 }
 
 parameters2 = {
-    'dt__criterion': ['gini', 'entropy']
+    'dt__criterion': ['gini', 'entropy'],
+    'dt__max_leaf_nodes':[2,3,4,5],
+    'dt__max_depth': [2,3,4,5],
+    'dt__splitter' : ['best'] #Use random it brings to a non certain result
 }
 
-parameterss = [parameters, parameters2]
+parameters3 = {
+    'svm__C': [.001, .01, .1, 1.0, 10.],
+    'svm__kernel': ['rbf', 'linear', 'sigmoid'],
+    'svm__gamma': [.001, .01, .1, 1.0]
+}
+
+parameterss = [parameters, parameters2, parameters3]
 
 
 
@@ -77,7 +111,7 @@ for (pip, pr) in zip(pipelines, parameterss):
                                scoring=metrics.make_scorer(metrics.matthews_corrcoef),
                                cv=10,
                                n_jobs=-1,
-                               verbose=10)
+                               verbose=-1)
     grid_search.fit(X_train, Y_train)
 
     ## Print results for each combination of parameters.
@@ -124,4 +158,4 @@ for (pip, pr) in zip(pipelines, parameterss):
     print(metrics.matthews_corrcoef(Y_test, Y_predicted))
 
     print("Normalized Accuracy")
-    print(metrics.accuracy_score)
+    print(metrics.accuracy_score(Y_test,Y_predicted))
