@@ -14,6 +14,7 @@ import pprint as pp
 import pandas as pd
 
 from sklearn.utils import resample
+import operator
 
 import config as cfg
 # Change paths accordingly
@@ -86,7 +87,7 @@ svm = SVC()
 
 pipelines = [Pipeline([('knn', knn)]), Pipeline([('dt', dt)]), Pipeline([('svm', svm)])]
 parameters = {
-    'knn__n_neighbors': [1, 3, 5, 7, 9, 11, 13, 15, 17, 19],
+    'knn__n_neighbors': [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
     'knn__weights': ['uniform', 'distance'],
     'knn__algorithm': [ 'ball_tree', 'kd_tree', 'brute']
 }
@@ -107,7 +108,9 @@ parameters3 = {
 parameterss = [parameters, parameters2, parameters3]
 
 
-
+list_params = list()
+list_score = list()
+pairs = list()
 for (pip, pr) in zip(pipelines, parameterss):
     grid_search = GridSearchCV(pip,
                                pr,
@@ -125,6 +128,9 @@ for (pip, pr) in zip(pipelines, parameterss):
               (grid_search.cv_results_['params'][i],
                grid_search.cv_results_['mean_test_score'][i],
                grid_search.cv_results_['std_test_score'][i]))
+        # list_params.append(grid_search.cv_results_['params'][i])
+        # list_score.append(grid_search.cv_results_['mean_test_score'][i])
+        pairs.append((grid_search.cv_results_['params'][i],grid_search.cv_results_['mean_test_score'][i]))
 
     print("Best Estimator:")
     pp.pprint(grid_search.best_estimator_)
@@ -165,3 +171,14 @@ for (pip, pr) in zip(pipelines, parameterss):
 
     print("Normalized Accuracy")
     print(metrics.accuracy_score(Y_test,Y_predicted))
+
+
+# print list_params
+# print list_score
+# pairs = list()
+# for i in len(list_params):
+#     pairs.append()
+
+print pairs
+pairs.sort(key=operator.itemgetter(1), reverse=True)
+print pairs
