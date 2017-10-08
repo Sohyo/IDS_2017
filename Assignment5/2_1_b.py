@@ -9,8 +9,9 @@ import ggplot
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from numpy import linalg as LA
+import config as cfg
 
-path = '/Users/danielmlow/Dropbox/lct/data_science/assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 save_fig_tsne_train = 'tsne_train_before_preprocessing.png'

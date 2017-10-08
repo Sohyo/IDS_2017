@@ -9,9 +9,10 @@ from pylab import plot, show, savefig, xlim, figure, \
                 hold, ylim, legend, boxplot, setp, axes, xlabel, ylabel, title
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+import config as cfg
 
 # Change paths accordingly
-path = '/Users/danielmlow/Dropbox/lct/data_science/assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 save_fig_boxplot_dif_to = 'boxplot_dif.png'
