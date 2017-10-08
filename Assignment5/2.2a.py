@@ -1,13 +1,8 @@
-from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn import model_selection
 from sklearn import neighbors
 from sklearn import tree
-import pprint
 
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
@@ -18,11 +13,11 @@ import pprint as pp
 
 import pandas as pd
 
-from sklearn import preprocessing
-from sklearn import utils
+from sklearn.utils import resample
 
+import config as cfg
 # Change paths accordingly
-path = '/home/xu/Documents/Intro to Data Science/Assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 
@@ -34,9 +29,6 @@ dataset_48 = 'train_48.csv'
 #data = pd.read_csv(path+features_file)
 #data = pd.read_csv(path+dataset_65)
 data = pd.read_csv(path+dataset_48)
-#Uncomment the following line only if using 48 or 65
-
-#data = data.iloc[1:]
 
 labels = pd.read_csv(path+labels_file)
 
@@ -45,12 +37,23 @@ complete_data = pd.concat([data, labels], axis=1)
 
 labeled = complete_data[0:179]
 
-#DROP 47
 
+#DROP 47
 labeled = labeled.drop([47])
 #Into arrays
 dataset = labeled.values
 
+# Since the dataset is imbalanced, we will use oversampling of
+# the minority class
+df_majority = dataset[dataset[:,49]==1]
+df_minority = dataset[dataset[:,49]==2]
+
+df_minority_upsampled = resample(df_minority,
+                                 replace=True,     # sample with replacement
+                                 n_samples=df_majority.shape[0],    # to match majority class
+                                 random_state=42) # reproducible results
+
+dataset = np.concatenate((df_majority, df_minority_upsampled), axis=0)
 #I need the first 186 columns
 #X = dataset[:,0:185]
 #Y = dataset[:,186]
@@ -64,7 +67,7 @@ Y = dataset[:,49]
 print("----------------------")
 
 # Load Test-Set
-X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3, random_state=42)
 
 print("----------------------")
 print("Creating Training Set and Test Set")
@@ -83,7 +86,7 @@ svm = SVC()
 
 pipelines = [Pipeline([('knn', knn)]), Pipeline([('dt', dt)]), Pipeline([('svm', svm)])]
 parameters = {
-    'knn__n_neighbors': [1,2, 3,4, 5,6, 7,8, 9,10, 11,12, 13],
+    'knn__n_neighbors': [1, 3, 5, 7, 9, 11, 13, 15, 17, 19],
     'knn__weights': ['uniform', 'distance'],
     'knn__algorithm': [ 'ball_tree', 'kd_tree', 'brute']
 }
@@ -111,7 +114,7 @@ for (pip, pr) in zip(pipelines, parameterss):
                                scoring=metrics.make_scorer(metrics.matthews_corrcoef),
                                cv=10,
                                n_jobs=-1,
-                               verbose=-1)
+                               verbose= 0)
     grid_search.fit(X_train, Y_train)
 
     ## Print results for each combination of parameters.
@@ -134,6 +137,9 @@ for (pip, pr) in zip(pipelines, parameterss):
 
     print("Number of Folds:")
     pp.pprint(grid_search.n_splits_)
+
+    # print("All classifiers:")
+    # pp.pprint(grid_search.cv_results_)
 
 
     Y_predicted = grid_search.predict(X_test)

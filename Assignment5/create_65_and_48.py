@@ -1,10 +1,10 @@
 
 import pandas as pd
 import numpy as np
-
+import config as cfg
 
 # Change paths accordingly
-path = '/home/xu/Documents/Intro to Data Science/Assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 
