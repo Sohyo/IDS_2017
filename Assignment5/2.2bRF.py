@@ -1,32 +1,18 @@
-from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn import model_selection
-from sklearn import neighbors
-from sklearn import tree
-from sklearn.ensemble import VotingClassifier
-from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import RandomForestClassifier
-import pprint
-
 from sklearn.utils import resample
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
-
 from sklearn import metrics
 
+import numpy as np
 import pprint as pp
-
 import pandas as pd
 
-from sklearn import preprocessing
-from sklearn import utils
+import config as cfg
 
 # Change paths accordingly
-path = '/home/xu/Documents/Intro to Data Science/Assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 
@@ -40,7 +26,6 @@ dataset_48 = 'train_48.csv'
 data = pd.read_csv(path+dataset_48)
 #Uncomment the following line only if using 48 or 65
 
-#data = data.iloc[1:]
 
 labels = pd.read_csv(path+labels_file)
 
@@ -76,7 +61,7 @@ dataset = np.concatenate((df_majority, df_minority_upsampled), axis=0)
 
 X = dataset[:,1:48]
 Y = dataset[:,49]
-X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3, random_state=42)
 
 seed = 66
 
@@ -102,7 +87,7 @@ grid_search = GridSearchCV(pipeline,
                            scoring=metrics.make_scorer(metrics.matthews_corrcoef),
                            cv=10,
                            n_jobs=-1,
-                           verbose=10)
+                           verbose=1)
 
 
 grid_search.fit(X_train, Y_train)

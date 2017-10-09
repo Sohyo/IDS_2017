@@ -1,5 +1,3 @@
-# python3
-
 from sklearn.manifold import TSNE
 from sklearn.decomposition import TruncatedSVD
 import pandas as pd
