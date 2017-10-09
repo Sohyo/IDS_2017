@@ -7,6 +7,7 @@ from sklearn import neighbors
 from sklearn import tree
 from sklearn.ensemble import VotingClassifier
 from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import RandomForestClassifier
 import pprint
 
 from sklearn.utils import resample
@@ -81,32 +82,56 @@ Y = dataset[:,49]
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3)
 
 seed = 66
-kfold = model_selection.KFold(n_splits=10, random_state=seed)
+
+rf = RandomForestClassifier()
+
+pipeline = Pipeline([
+    ('rf', rf),
+])
+
+# Parameters
+
+parameters = {
+    'rf__criterion': ['gini', 'entropy'],
+    'rf__max_leaf_nodes': [2, 3, 4, 5],
+    'rf__max_depth': [2, 3, 4, 5],
+    'rf__n_estimators' : list(range(10,20))
+}
+
+# GridSearch for exhaustive search of the optimal parameters
+
+grid_search = GridSearchCV(pipeline,
+                           parameters,
+                           scoring=metrics.make_scorer(metrics.matthews_corrcoef),
+                           cv=10,
+                           n_jobs=-1,
+                           verbose=10)
 
 
-# create the sub models
-estimators = []
-model1 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 17)
-estimators.append(('knn17', model1))
-model2 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 21)
-estimators.append(('knn21', model2))
-model3 = SVC(C = 10.0, kernel= 'rbf', gamma = 1.0)
-estimators.append(('svm10', model3))
-model4 = SVC(C = 1.0, kernel= 'rbf', gamma = 1.0)
-estimators.append(('svm1', model4))
-model5 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 19)
-estimators.append(('knn19', model5))
-# create the ensemble model
-ensemble = VotingClassifier(estimators)
+grid_search.fit(X_train, Y_train)
 
-ensemble.fit(X_train,Y_train)
-Y_predicted = ensemble.predict(X_test)
+print("Best Estimator:")
+pp.pprint(grid_search.best_estimator_)
 
+print("Best Parameters:")
+pp.pprint(grid_search.best_params_)
+
+print("Used Scorer Function:")
+pp.pprint(grid_search.scorer_)
+
+print("Number of Folds:")
+pp.pprint(grid_search.n_splits_)
+
+# Using the best combination to predict data labels
+
+Y_predicted = grid_search.predict(X_test)
+
+# Evaluate the performance of the classifier on the original Test-Set
 output_classification_report = metrics.classification_report(
     Y_test,
-    Y_predicted)
+    Y_predicted,)
 
-print("----------------------------------------------------")
+print("---------------Classification Report----------------")
 print(output_classification_report)
 print("----------------------------------------------------")
 
@@ -120,8 +145,4 @@ print("Matthews corrcoefficent")
 print(metrics.matthews_corrcoef(Y_test, Y_predicted))
 
 print("Normalized Accuracy")
-print(metrics.accuracy_score(Y_test, Y_predicted))
-
-
-results = model_selection.cross_val_score(ensemble, X, Y, cv=kfold)
-print(results)
+print(metrics.accuracy_score(Y_test,Y_predicted))
