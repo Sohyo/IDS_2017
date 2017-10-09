@@ -1,4 +1,4 @@
-Total = 60/100
+Total = 60 + 7/100
 
 1.1 7/7p
 
@@ -37,3 +37,7 @@ The rule Massive Attack -> Nelly Furtado in this case would have a different con
 
 2.5 [7/15]
 Alignment of columns in table needs to be fixed. It is difficult to follow otherwise. And how would you select the winner after putting these artists/bands in the questionnaire? Some weighted average or normal average? More explanation is needed here. 
+
+Bonus 7/10
+
+Good visualisations created and it is clear you understand the importance of them. The only thing missing would be to haved used the visualisation to identify something that wasn’t noticeable before (e.g. a new connection or an artist that connects varying genres).
