@@ -48,9 +48,6 @@ complete_data = pd.concat([data, labels], axis=1)
 
 labeled = complete_data[0:179]
 
-#DROP 47
-
-labeled = labeled.drop([47])
 #Into arrays
 dataset = labeled.values
 

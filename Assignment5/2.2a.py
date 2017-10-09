@@ -35,12 +35,8 @@ labels = pd.read_csv(path+labels_file)
 
 #The Joined dataframe
 complete_data = pd.concat([data, labels], axis=1)
-
 labeled = complete_data[0:179]
 
-
-#DROP 47
-labeled = labeled.drop([47])
 #Into arrays
 dataset = labeled.values
 
@@ -55,7 +51,8 @@ df_minority_upsampled = resample(df_minority,
                                  random_state=42) # reproducible results
 
 dataset = np.concatenate((df_majority, df_minority_upsampled), axis=0)
-#I need the first 186 columns
+
+#Pick as many columns as the features are
 #X = dataset[:,0:185]
 #Y = dataset[:,186]
 
