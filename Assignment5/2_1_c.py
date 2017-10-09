@@ -33,48 +33,8 @@ labels_train = pd.read_csv(path+labels_file)
 
 features_test = df_whole.iloc[179:,:]
 
-
-
-## Find odd subject:
-## ---------------------------------------------------------------------------------
-# df = features_train
-
+labels_train = pd.read_csv(path+labels_file) 
 labels = np.asarray(labels_train)
-# df['labels'] = labels
-
-# multiple box plots on one figure
-plt.figure()
-plt.boxplot(np.transpose(features_train.values))
-plt.xticks(rotation=45,size=4)
-
-# See boxplot for all subjects. 47 looks like it has that high outlier. 
-plt.savefig(path+save_fig_boxplot, format='eps', dpi=1000)
-
-
-# Calculate the variance for each subject
-d = {}
-for i in range(179):
-	d[i] = np.std(features_train.iloc[i,:])
-
-sorted_x = sorted(d.items(), key=operator.itemgetter(1)) #Sorted by p-value
-#confirmed: 47 has the highest variance. So we'll remove him. 
-
-features_train = features_train.drop(features_train.index[47])
-labels_train = labels_train.drop(labels_train.index[47])
-labels = np.delete(labels,47)
-
-
-# plot tsne without subject 47
-
-X_reduced = TruncatedSVD(n_components=70, random_state=42).fit_transform(features_train.values)
-
-tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000, random_state=42)
-tsne_results = tsne.fit_transform(X_reduced,labels_train)
-df_tsne = pd.DataFrame(tsne_results,columns=['x-tsne','y-tsne'])
-df_tsne['label']=np.asarray(labels_train)
-chart = ggplot.ggplot(df_tsne, aes(x='x-tsne', y='y-tsne', color='label') ) + geom_point() + scale_color_brewer(type='diverging', palette=4)+ggtitle("tsne for dimensionality reduction without subject 47 (train set)")
-chart.save(path+save_fig_train_no_47)
-plt.close('all')
 
 # z-score transformation
 ## ---------------------------------------------------------------------------------
@@ -86,7 +46,7 @@ for col in cols:
     col_zscore = col + '_zscore'
     df[col_zscore] = (df[col] - df[col].mean())/df[col].std(ddof=0)
 
-df_z = df.iloc[:,186:372]
+df_z = df.iloc[:,186:]
 
 # Plotting with z-score transformation
 
@@ -134,10 +94,6 @@ tsne = TSNE(n_components=2, verbose=0, perplexity=40, n_iter=1000, random_state=
 tsne_results = tsne.fit_transform(df2.values,labels_train)
 df_tsne = pd.DataFrame(tsne_results,columns=['x-tsne','y-tsne'])
 df_tsne['label']=np.asarray(labels_train)
-
-# If you want to plot without outlier. 
-# df_tsne = df_tsne.drop(df_tsne.index[24])
-
 chart = ggplot.ggplot(df_tsne, aes(x='x-tsne', y='y-tsne', color='label') ) + geom_point() + scale_color_brewer(type='diverging', palette=4)+ggtitle("tsne for dimensionality reduction on reduced features (train set)")
 chart.save(path+save_fig_train_reduced_48)
 plt.close('all')
