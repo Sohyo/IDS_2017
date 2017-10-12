@@ -14,9 +14,9 @@ time_start = time.clock()
 #run your code
 
 #Run just once
-#nltk.download('gutenberg')
-#nltk.download('punkt')
-#nltk.download('wordnet')
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 path = cfg.path
 
