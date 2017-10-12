@@ -1,31 +1,18 @@
-from sklearn.datasets import load_files
 from sklearn.model_selection import train_test_split
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import model_selection
 from sklearn import neighbors
-from sklearn import tree
 from sklearn.ensemble import VotingClassifier
-from sklearn.ensemble import BaggingClassifier
-import pprint
-
 from sklearn.utils import resample
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import SVC
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import GridSearchCV
-
 from sklearn import metrics
 
-import pprint as pp
-
+import numpy as np
 import pandas as pd
 
-from sklearn import preprocessing
-from sklearn import utils
+import config as cfg
 
 # Change paths accordingly
-path = '/home/xu/Documents/Intro to Data Science/Assignment5/'
+path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
 

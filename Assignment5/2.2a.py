@@ -125,8 +125,6 @@ for (pip, pr) in zip(pipelines, parameterss):
               (grid_search.cv_results_['params'][i],
                grid_search.cv_results_['mean_test_score'][i],
                grid_search.cv_results_['std_test_score'][i]))
-        # list_params.append(grid_search.cv_results_['params'][i])
-        # list_score.append(grid_search.cv_results_['mean_test_score'][i])
         pairs.append((grid_search.cv_results_['params'][i],grid_search.cv_results_['mean_test_score'][i]))
 
     print("Best Estimator:")
@@ -140,9 +138,6 @@ for (pip, pr) in zip(pipelines, parameterss):
 
     print("Number of Folds:")
     pp.pprint(grid_search.n_splits_)
-
-    # print("All classifiers:")
-    # pp.pprint(grid_search.cv_results_)
 
 
     Y_predicted = grid_search.predict(X_test)
