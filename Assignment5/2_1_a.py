@@ -1,5 +1,3 @@
-# I used python2
-
 import pandas as pd
 from numpy import linalg as LA
 import numpy as np
@@ -11,7 +9,6 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 import config as cfg
 
-# Change paths accordingly
 path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'

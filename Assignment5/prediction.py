@@ -18,15 +18,11 @@ labels_file = 'labelsFlowCapAnalysis2017.csv'
 
 dataset_65 = 'train_65.csv'
 dataset_48 = 'train_48.csv'
+prediction_file = 'Team_07_prediction.csv'
 
 #Preprocessing
 
-#data = pd.read_csv(path+features_file)
-#data = pd.read_csv(path+dataset_65)
 data = pd.read_csv(path+dataset_48)
-#Uncomment the following line only if using 48 or 65
-
-#data = data.iloc[1:]
 
 labels = pd.read_csv(path+labels_file)
 
@@ -34,10 +30,12 @@ labels = pd.read_csv(path+labels_file)
 complete_data = pd.concat([data, labels], axis=1)
 
 labeled = complete_data[0:179]
+labeled = labeled.drop(labeled.index[1])
+unlabeled = complete_data[179:360]
 
 #Into arrays
 dataset = labeled.values
-
+unlabeled_dataset = unlabeled.values
 
 # Since the dataset is imbalanced, we will use oversampling of
 # the minority class
@@ -52,16 +50,11 @@ df_minority_upsampled = resample(df_minority,
 dataset = np.concatenate((df_majority, df_minority_upsampled), axis=0)
 
 
-
-#I need the first 186 columns
-#X = dataset[:,0:185]
-#Y = dataset[:,186]
-
-#X = dataset[:,1:65]
-#Y = dataset[:,66]
-
 X = dataset[:,1:48]
 Y = dataset[:,49]
+
+X_unlabeled = unlabeled_dataset[:,1:48]
+
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.3)
 
 seed = 66
@@ -70,15 +63,15 @@ kfold = model_selection.KFold(n_splits=10, random_state=seed)
 
 # create the sub models
 estimators = []
-model1 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 17)
+model1 = neighbors.KNeighborsClassifier(algorithm='brute', weights='distance', n_neighbors= 25)
 estimators.append(('knn17', model1))
-model2 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 21)
+model2 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 25)
 estimators.append(('knn21', model2))
 model3 = SVC(C = 10.0, kernel= 'rbf', gamma = 1.0)
 estimators.append(('svm10', model3))
 model4 = SVC(C = 1.0, kernel= 'rbf', gamma = 1.0)
 estimators.append(('svm1', model4))
-model5 = neighbors.KNeighborsClassifier(algorithm='ball_tree', weights='distance', n_neighbors= 19)
+model5 = neighbors.KNeighborsClassifier(algorithm='kd_tree', weights='distance', n_neighbors= 25)
 estimators.append(('knn19', model5))
 # create the ensemble model
 ensemble = VotingClassifier(estimators)
@@ -109,3 +102,10 @@ print(metrics.accuracy_score(Y_test, Y_predicted))
 
 results = model_selection.cross_val_score(ensemble, X, Y, cv=kfold)
 print(results)
+
+Y_result = ensemble.predict(X_unlabeled)
+
+data = pd.DataFrame(Y_result)
+data.columns = ['S_labels']
+data.index = (range(180,360))
+data.to_csv(path+prediction_file)

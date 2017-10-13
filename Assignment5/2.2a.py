@@ -35,12 +35,8 @@ labels = pd.read_csv(path+labels_file)
 
 #The Joined dataframe
 complete_data = pd.concat([data, labels], axis=1)
-
 labeled = complete_data[0:179]
 
-
-#DROP 47
-labeled = labeled.drop([47])
 #Into arrays
 dataset = labeled.values
 
@@ -55,7 +51,8 @@ df_minority_upsampled = resample(df_minority,
                                  random_state=42) # reproducible results
 
 dataset = np.concatenate((df_majority, df_minority_upsampled), axis=0)
-#I need the first 186 columns
+
+#Pick as many columns as the features are
 #X = dataset[:,0:185]
 #Y = dataset[:,186]
 
@@ -128,8 +125,6 @@ for (pip, pr) in zip(pipelines, parameterss):
               (grid_search.cv_results_['params'][i],
                grid_search.cv_results_['mean_test_score'][i],
                grid_search.cv_results_['std_test_score'][i]))
-        # list_params.append(grid_search.cv_results_['params'][i])
-        # list_score.append(grid_search.cv_results_['mean_test_score'][i])
         pairs.append((grid_search.cv_results_['params'][i],grid_search.cv_results_['mean_test_score'][i]))
 
     print("Best Estimator:")
@@ -143,9 +138,6 @@ for (pip, pr) in zip(pipelines, parameterss):
 
     print("Number of Folds:")
     pp.pprint(grid_search.n_splits_)
-
-    # print("All classifiers:")
-    # pp.pprint(grid_search.cv_results_)
 
 
     Y_predicted = grid_search.predict(X_test)

@@ -1,18 +1,12 @@
-
-#python3
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import operator
 from sklearn.manifold import TSNE
 from sklearn.decomposition import TruncatedSVD
 from ggplot import *
 import ggplot
-import random
 import config as cfg
 
-# Change paths accordingly
 path = cfg.path
 features_file = 'featuresFlowCapAnalysis2017.csv'
 labels_file = 'labelsFlowCapAnalysis2017.csv'
