@@ -72,9 +72,6 @@ sorted_books = sorted(others, key=lambda x: x[1], reverse=True)
 print "Score:"
 print max_score
 print
-print "Book Index:"
-print book_index
-print
 print "Title"
 if corpora == "gutenberg":
     print gutenberg.fileids()[book_index]
@@ -84,5 +81,6 @@ print
 print "Other Suggested Books:"
 print
 for book in sorted_books[1:4]:
-    print(book)
+    if book[1] > 0:
+        print(book)
     print

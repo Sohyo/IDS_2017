@@ -1,5 +1,8 @@
 from pylab import *
 import matplotlib.pyplot  as plt
+
+import fit as fit
+
 import config as cfg
 import pandas as pd
 from nltk.corpus import gutenberg
