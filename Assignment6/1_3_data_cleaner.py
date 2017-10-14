@@ -8,7 +8,6 @@ from nltk.stem import WordNetLemmatizer
 from numpy import unique
 import config as cfg
 import csv
-import time
 import operator
 
 #Run just once
@@ -18,12 +17,14 @@ import operator
 #nltk.download('stopwords')
 
 path = cfg.path
+wnl = WordNetLemmatizer()
 
 #Book Titles
 titles = gutenberg.fileids()
 
 #List of stopwords
-stopwords = map(lambda x: x.encode('utf-8'),stopwords.words('english'))
+stopwords = stopwords.words('english')
+
 
 ##  TEXT PREPROCESING
 # Lemmatizer
@@ -40,22 +41,22 @@ time_start = time.clock()
 #Case Fold, Lemmatize, Punctuation, Stemmer , Stopwords
 def cleaning(book):
     text = str(book).split('u')
+    
     output = []
     for item in book:
         #remove punctuation
         #remove stopwords
-
-        if item not in punctuation and item not in stopwords and len(item)>1:
+        if item.lower() not in punctuation and item not in stopwords and len(item)>1:
             #there are also combined punctuation as "!--"
             if any(punct in punctuation for punct in item) == 0:
                 #case fold -> lemmatize -> stemming -> tokenize
-                word = word_tokenize(stemmer.stem(wordnet_lemmatizer.lemmatize(item.lower())))
+                word = word_tokenize(stemmer.stem(item.lower()))
                 output.append(word[0].encode('utf-8'))
     return output
 
 #TEST
 for title in titles:
-    book = gutenberg.words(title)
+    book = gutenberg.sents(title)
     cleaned = cleaning(book)
     print(title)
     print("Length before cleaning: \t" + str(len(book)) )
