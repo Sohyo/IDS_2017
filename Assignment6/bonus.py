@@ -3,82 +3,76 @@ from nltk.tokenize import sent_tokenize
 from nltk.corpus import gutenberg
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
-import operator
+from operator import itemgetter
 
 titles = gutenberg.fileids() #Book Titles
 d1 = {}
-sentences_IDF = []
+XA = np.array([])
 
 def lookup(title,word):
-	global d1
-	column_index = d1.get(word,-1)
-	if column_index == -1:
-		return 0
-	i = titles.index(title)
-	return XA[i][column_index]
-
-# word = 'loves'
-# titles = 'austen-emma.txt'
-# column_index = d1.get(word,-1)
-# i = title.index(title)
-# return XA[i][column_index]
-
+    global d1
+    column_index = d1.get(word,-1)
+    if column_index == -1:
+        return 0
+    i = titles.index(title)
+    return XA[i][column_index]
 
 def summary(title):
-	# for title in titles:
-	# 	print(title)
-	# title = raw_input('Please select a title: ')
-	book = gutenberg.raw(title)
-	sentences = sent_tokenize(book)
-	for sentence in sentences:
-		words = sentence.lower().split()
-		sent_score = 0
-		for word in words:
-			sent_score += lookup(title, word)
-		sentences_IDF.append([sent_score,sentence])
-	print(sentences_IDF[:10])
-	sorted_sentences_IDF = sentences_IDF.sort(key=operator.itemgetter(0))
+    book = gutenberg.raw(title)
+    sentences = sent_tokenize(book)
+    position = 0
+    sentences_IDF = []
+    for sentence in sentences:
+        words = sentence.lower().split()
+        word_count = len(words)
+        sent_score = 0
+        position = position + 1
+        for word in words:
+            sent_score += lookup(title, word)
+        sent_score = sent_score/float(word_count)
+        sentences_IDF.append([sentence, sent_score, word_count, position])
+    sentences_IDF.sort(key=itemgetter(1), reverse=True)
+    truncated_list = get_final_sentences(sentences_IDF)
+    text = ''
+    for s in truncated_list:
+        text = text + s[0]
+    text = text.replace('\n', ' ').replace('\r', '')
+    print text
+    with open('./bonus/summary_' + title, "w") as text_file:
+        text_file.write(text)
+
+def get_final_sentences(sentences_IDF):
+    total_words = 0
+    truncated_list = []
+    iterator = 0
+    while total_words < 200:
+        if sentences_IDF[iterator][2] > 7:
+            total_words = total_words + sentences_IDF[iterator][2]
+            # We don't want to go over the 200 word limit.
+            if total_words > 200:
+                break
+            truncated_list.append(sentences_IDF[iterator])
+        iterator = iterator + 1
+    truncated_list.sort(key = itemgetter(3))
+    return truncated_list
+
 
 def tf_idf():
-	# nltk.download('gutenberg')
-	titles = gutenberg.fileids()
-	corpus = []
-	for title in titles:
-		corpus.append(gutenberg.raw(title))
-	vectorizer = TfidfVectorizer(min_df=1, stop_words="english")
-	X = vectorizer.fit_transform(corpus)
-	XA = X.toarray()
-	global d1
-	d1 = vectorizer.vocabulary_
-	return XA
+    nltk.download('gutenberg')
+    titles = gutenberg.fileids()
+    corpus = []
+    for title in titles:
+        corpus.append(gutenberg.raw(title))
+    vectorizer = TfidfVectorizer(min_df=1, stop_words="english")
+    X = vectorizer.fit_transform(corpus)
+    global XA
+    XA = X.toarray()
+    global d1
+    d1 = vectorizer.vocabulary_
 
 
-
-XA = tf_idf()
+tf_idf()
 for title in titles:
-	summary(title)
-
-
-
-
-
-# dict = vectorizer.vocabulary_
-# def where_was_that(phrase, corpus):
-#     phrase_lower = phrase.lower()
-#     words = phrase_lower.split()
-#     max_score = 0
-#     book_index = -1
-#     # for each book, so row of the TF.IDF matrix
-#     for i in range(0, XA.shape[0] - 1):
-#         score = 0
-#         # for each word in the search phrase
-#         for word in words:
-#             column_index = dict.get(word, -1)
-#             # if search word is not in the corpus
-#             if column_index == -1:
-#                 continue
-#             score = score + XA[i][column_index]
-#         print score
-#         if score > max_score:
-#             max_score = score
-#             book_index = i
+    print(title)
+    summary(title)
+    print('\n\n\n\n')

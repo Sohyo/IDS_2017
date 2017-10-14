@@ -4,8 +4,8 @@ from nltk.corpus import gutenberg
 from nltk.corpus import state_union
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-#nltk.download('state_union')
-#nltk.download('gutenberg')
+nltk.download('state_union')
+nltk.download('gutenberg')
 
 #Sys handling
 
@@ -28,6 +28,7 @@ elif corpora == "state_union":
         corpus.append(state_union.raw(title))
 else:
     print "Choose from gutenberg or state_union"
+    exit(0)
 
 
 vectorizer = TfidfVectorizer(min_df=1, stop_words="english")
@@ -82,6 +83,6 @@ else:
 print
 print "Other Suggested Books:"
 print
-for book in sorted_books[1:]:
+for book in sorted_books[1:4]:
     print(book)
     print
