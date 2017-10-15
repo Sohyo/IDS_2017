@@ -16,10 +16,10 @@ import operator
 time_start = time.clock()
 
 
-#Run just once
-#nltk.download('gutenberg')
-#nltk.download('punkt')
-#nltk.download('wordnet')
+# Run just once
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 path = cfg.path
 titles = gutenberg.fileids() #Book Titles
@@ -44,7 +44,7 @@ def cleaning(book):
     for item in book:
         #remove punctuation
         #remove stopwords
-        if item not in punctuation and not in stopwords and len(item)>1:
+        if item not in punctuation and item not in stopwords and len(item)>1:
         # if item not in punctuation and item not in stopwords and len(item)>1:
             #there are also combined punctuation as "!--"
             if any(punct in punctuation for punct in item) == 0:
