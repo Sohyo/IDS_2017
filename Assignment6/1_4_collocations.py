@@ -13,6 +13,8 @@ import operator
 from nltk.tag import pos_tag
 from nltk.collocations import *
 import pandas as pd
+import matplotlib.pyplot as plt
+from pandas.tools.plotting import table
 
 
 #Run just once
@@ -22,6 +24,7 @@ import pandas as pd
 #nltk.download('stopwords')
 
 path = cfg.path
+output = '_table.tex'
 wnl = WordNetLemmatizer()
 titles = gutenberg.fileids()
 stopwords = stopwords.words('english')
@@ -81,7 +84,12 @@ for title in titles:
 
 df = pd.DataFrame(d1)
 
-print df
+for i in range(0,18,3):
+	dfn = df.iloc[:,i:i+3]
+	dfn_latex = dfn.to_latex()
+	print(dfn_latex)
+
+# Then copy these to Latex.
 
 
 # Arbitrary amount of ngrams:
