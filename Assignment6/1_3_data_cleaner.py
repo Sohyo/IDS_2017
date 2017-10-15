@@ -3,8 +3,7 @@ from nltk.corpus import gutenberg
 import string
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem.snowball import SnowballStemmer
-from nltk.stem import WordNetLemmatizer
+from nltk.stem.wordnet import WordNetLemmatizer
 from numpy import unique
 import config as cfg
 import csv
@@ -33,13 +32,10 @@ wordnet_lemmatizer = WordNetLemmatizer()
 
 #Punctuation
 punctuation = string.punctuation+'``'+'--'+"''"
-#Stemmer
-
-stemmer = SnowballStemmer("english")
 
 time_start = time.clock()
 
-#Case Fold, Lemmatize, Punctuation, Stemmer , Stopwords
+#Case Fold, Lemmatize, Punctuation, Stopwords
 def cleaning(book):
     text = str(book).split('u')
     
@@ -47,17 +43,17 @@ def cleaning(book):
     for item in book:
         #remove punctuation
         #remove stopwords
-        if item.lower() not in punctuation and item not in stopwords and len(item)>1:
+        if item not in punctuation and item.lower() not in stopwords and len(item)>1:
             #there are also combined punctuation as "!--"
             if any(punct in punctuation for punct in item) == 0:
-                #case fold -> lemmatize -> stemming -> tokenize
-                word = word_tokenize(stemmer.stem(item.lower()))
+                #case fold -> lemmatize --> tokenize
+                word = word_tokenize(wordnet_lemmatizer.lemmatize(item.lower()))
                 output.append(word[0].encode('utf-8'))
     return output
 
 #TEST
 for title in titles:
-    book = gutenberg.sents(title)
+    book = gutenberg.words(title)
     cleaned = cleaning(book)
     print(title)
     print("Length before cleaning: \t" + str(len(book)) )
