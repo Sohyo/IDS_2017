@@ -81,7 +81,7 @@ for title in titles:
 
 df = pd.DataFrame(d1)
 
-
+print df
 
 
 # Arbitrary amount of ngrams:
