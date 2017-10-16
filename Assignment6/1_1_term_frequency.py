@@ -54,7 +54,7 @@ punctuation = string.punctuation+'``'+'--'+"''"
 #             if any(punct in punctuation for punct in item) == 0:
 #                 #case fold -> lemmatize -> tokenize
 #                 word = word_tokenize(wordnet_lemmatizer.lemmatize(item.lower()))
-#                 output.append(word[0])
+#                 output.append(word[0].encode('utf-8'))
 #     return output
 
 # #Term Frequency function
@@ -107,7 +107,7 @@ def cleaning(book):
             if any(punct in punctuation for punct in item) == 0:
                 #case fold -> lemmatize -> tokenize
                 word = word_tokenize(wordnet_lemmatizer.lemmatize(item.lower()))
-                output.append(word[0])
+                output.append(word[0].encode('utf-8'))
     return output
 
 #Term Frequency function
@@ -132,7 +132,7 @@ for title in titles:
     dict2[title] = term_frequency(cleaned)
     dict2 = sorted(dict2[title].items(), key=lambda x: x[1], reverse=True)
     ddf = pd.DataFrame(dict2)
-    ddf.to_csv(path+folder2+title+'.csv',index=False)
+    ddf2.to_csv(path+folder2+title+'.csv',index=False)
     print("Done : \t" + title)
 
 time_elapsed = (time.clock() - time_start)
