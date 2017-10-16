@@ -132,7 +132,7 @@ for title in titles:
     dict2[title] = term_frequency(cleaned)
     dict2 = sorted(dict2[title].items(), key=lambda x: x[1], reverse=True)
     ddf = pd.DataFrame(dict2)
-    ddf2.to_csv(path+folder2+title+'.csv',index=False)
+    ddf.to_csv(path+folder2+title+'.csv',index=False)
     print("Done : \t" + title)
 
 time_elapsed = (time.clock() - time_start)
