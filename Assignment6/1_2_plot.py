@@ -1,14 +1,9 @@
 from pylab import *
 import matplotlib.pyplot  as plt
 
-
-import config as cfg
 import pandas as pd
 from nltk.corpus import gutenberg
-from matplotlib.font_manager import FontProperties
-import powerlaw
 import numpy as np
-import operator
 
 path = './term_frequency2/'
 matplotlib.style.use('ggplot')
@@ -27,13 +22,13 @@ colormap = plt.cm.nipy_spectral #I suggest to use nipy_spectral, Set1,Paired
 number_of_plots = 18
 ax1.set_color_cycle([colormap(i) for i in np.linspace(0, 1,number_of_plots)])
 for title in titles:
-	df = pd.read_csv(path + title+'.csv',header=None)	
-	words = df.ix[:,0].tolist()
-	freqs = df.ix[:,1].tolist()
-	count = len(words)
-	number_of_plots=18	
-	plt.plot(range(count), freqs)
-	i+=1
+    df = pd.read_csv(path + title+'.csv',header=None)
+    words = df.ix[:,0].tolist()
+    freqs = df.ix[:,1].tolist()
+    count = len(words)
+    number_of_plots=18
+    plt.plot(range(count), freqs)
+    i+=1
 
 
 plt.plot(range(len(freqs1)), freqs1, '--')

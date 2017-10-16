@@ -1,23 +1,14 @@
-import matplotlib.pyplot  as plt
-import config as cfg
-import pandas as pd
 from nltk.corpus import gutenberg
 import matplotlib.cm as cm
 
-
-from sklearn.manifold import TSNE
-from sklearn.decomposition import TruncatedSVD
 import pandas as pd
 import numpy as np
-from ggplot import *
-import ggplot
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-from numpy import linalg as LA
 import config as cfg
 
 path = cfg.path
-path_freq = path+'term_frequency/'
+path_freq = './term_frequency/'
 save_fig_pca = '1_5_pca.png'
 titles = gutenberg.fileids()
 
@@ -73,6 +64,6 @@ plt.xlabel('x-PCA')
 plt.ylabel('y-PCA')
 plt.title('PCA of vector semantics for top 300 words from each book')
 plt.savefig(path+save_fig_pca, bbox_inches='tight')
-# plt.show()
+plt.show()
 
 
