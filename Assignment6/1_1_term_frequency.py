@@ -107,7 +107,7 @@ def cleaning(book):
             if any(punct in punctuation for punct in item) == 0:
                 #case fold -> lemmatize -> tokenize
                 word = word_tokenize(wordnet_lemmatizer.lemmatize(item.lower()))
-                output.append(word[0])
+                output.append(word[0].encode('utf-8'))
     return output
 
 #Term Frequency function
