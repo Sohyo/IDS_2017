@@ -1,7 +1,6 @@
 from pylab import *
 import matplotlib.pyplot  as plt
 
-import fit as fit
 
 import config as cfg
 import pandas as pd
@@ -51,35 +50,9 @@ plt.xscale('log')
 
 plt.show(block =False)
 
-savefig(path+'/../'+'zipfs_law.png')
-
+savefig(path+'/../'+'zipfs_law.png', bbox_inches='tight')
+exit(0)
 # Calculate best fit to a power law
-
-x= {}
-
-for title in titles:
-	df = pd.read_csv(path + title+'.csv',header=None)
-	freqs = df.ix[:,1].tolist()	
-	results = powerlaw.Fit(freqs)
-	R = results.distribution_compare('power_law', 'exponential',normalized_ratio=True)
-	x[title] = R
-
-sorted_x = sorted(x.items(), key=operator.itemgetter(1))
-df1 = pd.DataFrame(sorted_x)
-
-d1 = {}
-for title in titles:
-	df = pd.read_csv(path + title+'.csv',header=None)
-	freqs = df.ix[:,1].tolist()	
-	d1[title] = freqs
-
-df2 = pd.DataFrame(d1)
-R, p = fit.distribution_compare(d1.get('bible-kjv.txt'), d1.get('austen-emma.txt'))
-R, p = fit.distribution_compare(d1.get('bible-kjv.txt'), d1.get('austen-emma.txt'))
-
-
-R = results.distribution_compare('power_law', 'lognormal_positive')
-
-# Best fit is the Bible. 
+# Best fit is the Bible.
 
 
