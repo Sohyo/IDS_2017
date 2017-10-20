@@ -1,27 +1,21 @@
 import nltk
 from nltk.corpus import gutenberg
-import string
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import RegexpTokenizer
-from numpy import unique
 import config as cfg
-import csv
-import operator
-from nltk.tag import pos_tag
 from nltk.collocations import *
 import pandas as pd
-import matplotlib.pyplot as plt
-from pandas.tools.plotting import table
 
 
 #Run just once
-#nltk.download('gutenberg')
-#nltk.download('punkt')
-#nltk.download('wordnet')
-#nltk.download('stopwords')
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
 
 path = cfg.path
 output = '_table.tex'

@@ -11,10 +11,10 @@ import operator
 import time
 
 #Run just once
-#nltk.download('gutenberg')
-#nltk.download('punkt')
-#nltk.download('wordnet')
-#nltk.download('stopwords')
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 path = cfg.path
 wnl = WordNetLemmatizer()

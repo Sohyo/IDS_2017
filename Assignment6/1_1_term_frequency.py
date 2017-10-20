@@ -5,24 +5,21 @@ from nltk import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from numpy import unique
-import config as cfg
-import csv
 import time
-import operator
 import pandas as pd
-
-
-time_start = time.clock()
+import config as cfg
+import os
 
 
 # Run just once
-# nltk.download('gutenberg')
-# nltk.download('punkt')
-# nltk.download('wordnet')
+nltk.download('gutenberg')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 path = cfg.path
-folder1 = 'term_frequency1/' #Create this folder if it doesn't exist
-folder2 = 'term_frequency2/' #Create this folder if it doesn't exist
+folder1 = 'term_frequency1/'
+folder2 = 'term_frequency2/'
 
 titles = gutenberg.fileids() #Book Titles
 ##  TEXT PREPROCESING
@@ -79,6 +76,8 @@ punctuation = string.punctuation+'``'+'--'+"''"
 #     dict1[title] = term_frequency(cleaned)
 #     dict1 = sorted(dict1[title].items(), key=lambda x: x[1], reverse=True)
 #     ddf = pd.DataFrame(dict1)
+#     if not os.path.exists(path + folder1)
+#         os.makedirs(path + folder1)
 #     ddf.to_csv(path+folder1+title+'.csv',index=False)
 #     print("Done : \t" + title)
 
@@ -132,6 +131,8 @@ for title in titles:
     dict2[title] = term_frequency(cleaned)
     dict2 = sorted(dict2[title].items(), key=lambda x: x[1], reverse=True)
     ddf = pd.DataFrame(dict2)
+    if not os.path.exists(path+folder2):
+        os.makedirs(path+folder2)
     ddf.to_csv(path+folder2+title+'.csv',index=False)
     print("Done : \t" + title)
 
