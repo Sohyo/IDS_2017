@@ -1,7 +1,6 @@
 import pandas as pd
 import config as cfg
 import os
-import numpy as np
 
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
@@ -166,6 +165,6 @@ for distance in distances:
 
 
 df = pd.concat([df3,df6])
-dfb = pd.transpose(df)
+dfb = np.transpose(df)
 df_latex = dfb.to_latex()
 
