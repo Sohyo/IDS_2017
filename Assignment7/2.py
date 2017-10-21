@@ -91,7 +91,7 @@ print('c6: ',c6)
 
 # 2.3. Dendrograms
 ## ==========================================================================================
-calculate full dendrogram
+# calculate full dendrogram
 
 # Dendrogram 3
 plt.figure(figsize=(25, 10))

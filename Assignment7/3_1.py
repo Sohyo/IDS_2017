@@ -27,13 +27,14 @@ labels = kmeans.labels_
 print centroids
 print labels
 
-#ax.scatter(X[:, 0], X[:, 1], X[:, 2],
-  #         c=labels.astype(np.float), edgecolor='k')
-#ax.w_xaxis.set_ticklabels([])
-#ax.w_yaxis.set_ticklabels([])
-#ax.w_zaxis.set_ticklabels([])
-#ax.set_xlabel('V1')
-#ax.set_ylabel('V2')
-#ax.set_zlabel('V3')
-#ax.set_title('Kmeans')
-#fig.show()
+# ax.scatter(X[:, 0], X[:, 1], X[:, 2],
+#           c=labels.astype(np.float), edgecolor='k')
+# ax.w_xaxis.set_ticklabels([])
+# ax.w_yaxis.set_ticklabels([])
+# ax.w_zaxis.set_ticklabels([])
+# ax.set_xlabel('V1')
+# ax.set_ylabel('V2')
+# ax.set_zlabel('V3')
+# ax.set_title('Kmeans')
+# fig.show()
+# plt.show()

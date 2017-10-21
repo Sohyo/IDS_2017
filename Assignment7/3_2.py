@@ -27,11 +27,12 @@ markers = ['o', 'v', 's']
 
 # k means determine k
 distortions = []
-K = range(1, 10)
+K = range(1, 25)
 for k in K:
     kmeanModel = KMeans(n_clusters=k).fit(X)
     kmeanModel.fit(X)
     distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, 'mahalanobis'), axis=1)) / X.shape[0])
+    print k
 
 # Plot the elbow
 plt.plot(K, distortions, 'bx-')
