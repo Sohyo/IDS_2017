@@ -1,3 +1,5 @@
+from matplotlib.cbook import silent_list
+
 from numpy import genfromtxt
 import matplotlib.pyplot as plt
 from sklearn import mixture
@@ -19,7 +21,9 @@ X3 = X3[np.random.randint(0,X3.shape[0],3000)]
 
 log_likelihoods_1 = []
 silhouettes = []
-K = range(2, 4)
+sses = []
+
+K = range(2, 35)
 
 #Cluster cohesion
 def create_dictionary(labels, data):
@@ -54,7 +58,29 @@ for k in K:
 
     print str(k) + '   ' + str(time.clock()-time_start) + 's'
     print "Silhouette"
-    print(silhouette_score(X3, labels))
+    sil_score = silhouette_score(X3, labels)
+    print(sil_score)
+    silhouettes.append(sil_score)
 
     clustered = create_dictionary(labels,X3)
-    print SSE(clustered,gmm3_1.means_)
+    sse_score = SSE(clustered,gmm3_1.means_)
+    print 'SSE score: ' + str(sse_score)
+    sses.append(sse_score)
+
+
+plt.subplot(3,1,1)
+plt.plot(K, silhouettes, 'bx-')
+plt.xlabel('Number of clusters')
+plt.ylabel('Silhouettes')
+
+plt.subplot(3,1,2)
+plt.plot(K, log_likelihoods_1, 'bx-')
+plt.xlabel('Number of clusters')
+plt.ylabel('Log likelihoods')
+
+plt.subplot(3,1,3)
+plt.plot(K, sses, 'bx-')
+plt.xlabel('Number of clusters')
+plt.ylabel('Cohesion')
+
+plt.show()
