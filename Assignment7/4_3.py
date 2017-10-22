@@ -1,86 +1,50 @@
-from matplotlib.cbook import silent_list
-
 from numpy import genfromtxt
 import matplotlib.pyplot as plt
 from sklearn import mixture
 
-from sklearn.metrics import silhouette_samples, silhouette_score
+from sklearn.model_selection import KFold
+from sklearn.metrics import silhouette_samples, silhouette_score, calinski_harabaz_score
 import time
+from sklearn.decomposition import PCA
+
 import config as cfg
+import pandas as pd
 import numpy as np
 # Change paths accordingly
 path = cfg.path
 data3d= 'data3.csv'
 data6d = 'data6.csv'
 
+X = genfromtxt(path+data6d, delimiter=',')[1:]
+X2 = X[np.random.randint(0,X.shape[0],3000)]
+pca = PCA(n_components=2).fit(X2)
+X6 = pca.transform(X2)
 
-X3 = genfromtxt(path+data3d, delimiter=',')[1:]
-X3 = X3[np.random.randint(0,X3.shape[0],3000)]
 
-#X6 = genfromtxt(path+data6d, delimiter=',')[1:]
+sils = []
+cals = []
 
-log_likelihoods_1 = []
-silhouettes = []
-sses = []
 
-K = range(2, 35)
-
-#Cluster cohesion
-def create_dictionary(labels, data):
-    output = {}
-    for label,item in zip(labels,data):
-        if label in output:
-            output[label].append(item.tolist())
-        else:
-            output[label] = [item.tolist()]
-    return output
-
-#log10 otherwise too big values
-def SSE(clustered, means):
-    sse = 0
-    for key in clustered:
-        points = clustered[key]
-        for point in points:
-            sse += int((np.linalg.norm(means[key]-point)))^2
-    return sse
+K = range(2, 25)
 
 for k in K:
     time_start = time.clock()
-    # Fit a Gaussian mixture with EM
-    gmm3_1 = mixture.GaussianMixture(n_components=k, covariance_type='diag', init_params='kmeans').fit(X3)
-    labels = gmm3_1.predict(X3)
-    log_likelihoods_1.append(gmm3_1.lower_bound_)
-    print "Means"
-    means = gmm3_1.means_
-    print means
-    print
-    #silhouettes.append((k,silhouette_score(X3, labels)))
-
-    print str(k) + '   ' + str(time.clock()-time_start) + 's'
-    print "Silhouette"
-    sil_score = silhouette_score(X3, labels)
-    print(sil_score)
-    silhouettes.append(sil_score)
-
-    clustered = create_dictionary(labels,X3)
-    sse_score = SSE(clustered,gmm3_1.means_)
-    print 'SSE score: ' + str(sse_score)
-    sses.append(sse_score)
+    gmm3_1 = mixture.GaussianMixture(n_components=k, covariance_type='diag', init_params='kmeans').fit(X6)
+    labels = gmm3_1.predict(X6)
+    print str(k) + '   ' + str(time.clock() - time_start) + 's'
+    sils.append((k, silhouette_score(X6, labels)))
+    cals.append((k, calinski_harabaz_score(X6, labels)))
 
 
-plt.subplot(3,1,1)
-plt.plot(K, silhouettes, 'bx-')
-plt.xlabel('Number of clusters')
-plt.ylabel('Silhouettes')
 
-plt.subplot(3,1,2)
-plt.plot(K, log_likelihoods_1, 'bx-')
-plt.xlabel('Number of clusters')
-plt.ylabel('Log likelihoods')
+df = pd.DataFrame(
+    {'K': range(2,25),
+     'Silhouette': sils,
+     'Calinksi': cals
+    })
 
-plt.subplot(3,1,3)
-plt.plot(K, sses, 'bx-')
-plt.xlabel('Number of clusters')
-plt.ylabel('Cohesion')
+print (df)
 
-plt.show()
+gmm = mixture.GaussianMixture(n_components=10, covariance_type='diag', init_params='kmeans').fit(X)
+df2 = pd.DataFrame({'Labels' : gmm.predict(X)})
+df2.to_csv('/home/xu/Documents/Team_07_clustering.csv')
