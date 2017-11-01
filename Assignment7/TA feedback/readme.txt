@@ -1,4 +1,4 @@
-Total: 85 + 0/100
+Total: 85 + 1.4/100
 
 1.1 5/5p
 
@@ -35,8 +35,8 @@ Your approach is good, however your comments are not detailed enough, you should
 
 
 4.3 7/15p
-Didnít answer the question on which galaxies are ìolderî and which are ìyoungerî. Prediction of clusters not good (only 2% explained variance)
+Didn‚Äôt answer the question on which galaxies are ‚Äúolder‚Äù and which are ‚Äúyounger‚Äù. Prediction of clusters not good (only 2% explained variance)
 
 
 
-Bonus 0/10p
+Bonus 1.4/10p
